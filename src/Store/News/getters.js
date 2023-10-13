@@ -1,9 +1,8 @@
 export default{
-
     getNews(state){
         return state.news;
     },
     isNews(state){
-        return state.news.lenght > 0 && state.news;
-    }
+        return state.news.length > 0 && state.news;
+    },
 }
