@@ -13,8 +13,7 @@ const router = createRouter({
         {path:"/eventCalendar", component:EventCalendar},
         {path:"/create", component:TheCreate},
         {path:"/contact", component:TheContact},
-
-
+        {path:"/:notFound(.*)", redirect:'/'}
     ]
 });
 

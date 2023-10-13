@@ -6,7 +6,7 @@
                 <ul>
                     <router-link to="/">Strona głown</router-link>
                     <router-link to="/news">Aktualności</router-link>
-                    <router-link to="/eventCalendar">Kalendarz wydarzeń</router-link>
+                    <router-link to="/eventCalendar">Terminy wydarzeń</router-link>
                     <router-link to="/create">Rękodzieła</router-link>
                     <router-link to="/contact">Contact</router-link>
                 </ul>
