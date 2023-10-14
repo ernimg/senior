@@ -12,8 +12,8 @@
             </p>
         </div>
         <ul v-else class="news__list">
-            <news-item v-for="news in NewsItems" :key="news.id" :title="news.title"
-                :description="news.description" :publish-date="news.publishDate"></news-item>
+            <news-item v-for="news in NewsItems" :key="news.id" :id="news.id" :title="news.title"
+                :description="news.description" :publish-date="news.publishDate" ></news-item>
         </ul>
     </section>
 </template>
