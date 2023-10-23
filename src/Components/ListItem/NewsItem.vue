@@ -1,24 +1,21 @@
 <template>
-    <li class="news__item">
-        <div class="news__header">
-                <h3>{{ title }}</h3>
-                <span>{{ publishDate }}</span>
-        </div>
-        <router-link :to="newsIdUrl">
-            Zobacz więcej
-       </router-link>
-    </li>
+  <li class="news__item">
+    <div class="news__header">
+      <h3>{{ title }}</h3>
+      <span>{{ publishDate }}</span>
+    </div>
+    <router-link :to="newsIdUrl"> Zobacz więcej </router-link>
+  </li>
 </template>
 <script>
-export default{
-    props:['id','title','publishDate'],
-    computed:{
-        newsIdUrl(){
-            return this.$route.path + '/' + this.id;
-        }
+export default {
+  props: ["id", "title", "publishDate"],
+  computed: {
+    newsIdUrl() {
+      return this.$route.path + "/" + this.id;
     },
-}
-
+  },
+};
 </script>
 <style scoped>
 .news__item {
@@ -28,9 +25,8 @@ export default{
   margin: 2rem 0;
   max-width: 20rem;
 }
-.news__header{
-    display: flex;
-    justify-content: space-between ;
+.news__header {
+  display: flex;
+  justify-content: space-between;
 }
-
 </style>
