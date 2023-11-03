@@ -10,15 +10,19 @@
   >
 </template>
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
 import EventItem from "@/Components/ListItem/EventItem.vue";
 export default {
   components: {
     EventItem,
   },
-  computed: {
-    EventsCalendar() {
-      return this.$store.getters["Events/getEvents"];
-    },
+  setup() {
+    const store = useStore();
+    const EventsCalendar = computed(() => {
+      return store.getters["Events/getEvents"];
+    });
+    return { EventsCalendar };
   },
 };
 </script>

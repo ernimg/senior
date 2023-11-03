@@ -13,33 +13,35 @@
   </footer>
 </template>
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
 export default {
   props: ["newsId"],
-  state() {
-    return {
-      selectedNenws: null,
-    };
-  },
-
-  computed: {
-    printTitle() {
-      return this.selectedNenws.title;
-    },
-    printDescription() {
-      return this.selectedNenws.description;
-    },
-    printPublishDateTime() {
-      return this.selectedNenws.publishDate;
-    },
-    printAuthor() {
-      return this.selectedNenws.author;
-    },
-  },
-
-  created() {
-    this.selectedNenws = this.$store.getters["News/getNews"].find(
-      (news) => news.id === this.newsId
-    );
+  // state() {
+  //   return {
+  //     selectedNenws: null,
+  //   };
+  // },
+  setup(props) {
+    const store = useStore();
+    const selectedNenws = computed(() => {
+      return store.getters["News/getNews"].find(
+        (news) => news.id === props.newsId
+      );
+    });
+    const printTitle = computed(() => {
+      return selectedNenws.value.title;
+    });
+    const printDescription = computed(() => {
+      return selectedNenws.value.description;
+    });
+    const printPublishDateTime = computed(() => {
+      return selectedNenws.value.publishDate;
+    });
+    const printAuthor = computed(() => {
+      return selectedNenws.value.author;
+    });
+    return { printTitle, printDescription, printPublishDateTime, printAuthor };
   },
 };
 </script>
