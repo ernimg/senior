@@ -1,3 +1,3 @@
 <template>
-  <h2>Lista rechsbilitacji</h2>
+  <h2>Lista rechabilitacji</h2>
 </template>

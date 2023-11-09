@@ -5,6 +5,7 @@ import TheContact from "./Pages/TheContact.vue";
 import TheGallery from "./Pages/TheGallery.vue";
 import EventCalendar from "./Pages/EventCalendar.vue";
 import NewsDetails from "./Components/NewsDetails.vue";
+import AdminPanel from "./Pages/AdminPanel.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -15,6 +16,7 @@ const router = createRouter({
     { path: "/eventCalendar", component: EventCalendar },
     { path: "/gallery", component: TheGallery },
     { path: "/contact", component: TheContact },
+    { path: "/admin", component: AdminPanel },
     { path: "/:notFound(.*)", redirect: "/" },
   ],
 });

@@ -17,6 +17,7 @@
         :title="news.title"
         :description="news.description"
         :publish-date="news.publishDate"
+        @rm-wews="remove"
       ></news-item>
     </ul>
   </section>
@@ -24,6 +25,7 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+
 import NewsItem from "../Components/ListItem/NewsItem.vue";
 export default {
   components: {
@@ -37,7 +39,10 @@ export default {
     const isNews = computed(() => {
       return store.getters["News/isNews"];
     });
-    return { NewsItems, isNews };
+    function remove(param) {
+      store.dispatch("News/rmNews", param);
+    }
+    return { NewsItems, isNews, remove };
   },
 };
 </script>
