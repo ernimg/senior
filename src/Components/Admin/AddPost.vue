@@ -9,7 +9,11 @@
       <button @click="choiceOptions('photo')">Zdjęcie <span>+</span></button>
     </nav>
     <form @submit.prevent="submitForm">
-      <div class="form-control" v-if="title.isActive">
+      <div
+        class="form-control"
+        v-if="title.isActive"
+        :class="{ invalid: !title.isValid }"
+      >
         <label for="title">Tytuł</label>
         <input
           type="text"
@@ -19,7 +23,11 @@
         />
         <p v-if="!title.isValid">Brak wprowadzonej wartości.</p>
       </div>
-      <div class="form-control" v-if="email.isActive">
+      <div
+        class="form-control"
+        v-if="email.isActive"
+        :class="{ invalid: !email.isValid }"
+      >
         <label for="emial">Email</label>
         <input
           type="email"
@@ -29,7 +37,11 @@
         />
         <p v-if="!email.isValid">Brak wprowadzonej wartości lub brak "@".</p>
       </div>
-      <div class="form-control" v-if="phone.isActive">
+      <div
+        class="form-control"
+        v-if="phone.isActive"
+        :class="{ invalid: !phone.isValid }"
+      >
         <label for="phone">Telefon</label>
         <input
           type="text"
@@ -39,7 +51,11 @@
         />
         <p v-if="!phone.isValid">Brak wprowadzonej wartości.</p>
       </div>
-      <div class="form-control" v-if="date.isActive">
+      <div
+        class="form-control"
+        v-if="date.isActive"
+        :class="{ invalid: !date.isValid }"
+      >
         <label for="date">Data</label>
         <input
           type="date"
@@ -49,7 +65,11 @@
         />
         <p v-if="!date.isValid">Brak wprowadzonej wartości.</p>
       </div>
-      <div class="form-control" v-if="description.isActive">
+      <div
+        class="form-control"
+        v-if="description.isActive"
+        :class="{ invalid: !description.isValid }"
+      >
         <label for="description">Opis</label>
         <textarea
           rows="5"
@@ -59,7 +79,11 @@
         />
         <p v-if="!description.isValid">Brak opisu.</p>
       </div>
-      <div class="form-control" v-if="imgages.isActive">
+      <div
+        class="form-control"
+        v-if="images.isActive"
+        :class="{ invalid: !images.isValid }"
+      >
         <label for="file">Wybierz zdjcia</label>
         <input
           type="file"
@@ -67,11 +91,16 @@
           name="file"
           accept=".jpg, .jpeg, .png"
           @change="previewFiles"
+          @blur="clearValidity('images')"
           multiple
         />
-        <p v-if="!imgages.isValid">Nie dodano jeszcze zdjęcia</p>
+        <p v-if="!images.isValid">Nie dodano jeszcze zdjęcia</p>
       </div>
-      <div class="form-control" v-if="author.isActive">
+      <div
+        class="form-control"
+        v-if="author.isActive"
+        :class="{ invalid: !author.isValid }"
+      >
         <label for="Author">Autor</label>
         <input
           type="text"
@@ -82,7 +111,9 @@
         <p v-if="!author.isValid">Brak wprowadzonej wartości</p>
       </div>
 
-      <p v-if="!formIsValid">Nie wszystkie pola zosta uzupełniones</p>
+      <p class="invalid" v-if="!formIsValid">
+        Nie wszystkie pola zosta uzupełniones
+      </p>
       <button>Wyślij</button>
     </form>
   </div>
@@ -118,7 +149,7 @@ export default {
       isValid: true,
       isActive: true,
     });
-    const imgages = reactive({
+    const images = reactive({
       value: [],
       isValid: true,
       isActive: true,
@@ -134,7 +165,7 @@ export default {
     };
     function previewFiles(event) {
       const files = event.target.files;
-      imgages.value.push(files);
+      images.value.push(files);
     }
     function choiceOptions(val) {
       activeOption.value = val;
@@ -144,7 +175,7 @@ export default {
         date.isActive = true;
         email.isActive = true;
         description.isActive = true;
-        imgages.isActive = true;
+        images.isActive = true;
         author.isActive = true;
       }
       if (activeOption.value === "events") {
@@ -153,7 +184,7 @@ export default {
         date.isActive = true;
         email.isActive = true;
         description.isActive = false;
-        imgages.isActive = false;
+        images.isActive = false;
         author.isActive = false;
       }
       if (activeOption.value === "photo") {
@@ -162,7 +193,7 @@ export default {
         date.isActive = false;
         email.isActive = false;
         description.isActive = false;
-        imgages.isActive = true;
+        images.isActive = true;
         author.isActive = false;
       }
     }
@@ -191,8 +222,8 @@ export default {
         description.isValid = false;
         formIsValid.value = false;
       }
-      if (imgages.value.length === 0 && imgages.isActive) {
-        imgages.isValid = false;
+      if (images.value.length === 0 && images.isActive) {
+        images.isValid = false;
         formIsValid.value = false;
       }
 
@@ -202,8 +233,9 @@ export default {
       }
     }
     function submitForm() {
-      // if (!formIsValid.value) return;
       inputValid();
+      if (!formIsValid.value) return;
+      console.log("ok");
     }
 
     return {
@@ -219,7 +251,7 @@ export default {
       phone,
       date,
       description,
-      imgages,
+      images,
       author,
     };
   },
