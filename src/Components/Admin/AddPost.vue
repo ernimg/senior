@@ -1,8 +1,283 @@
 <template>
-  <h2>Dodawanie Postu</h2>
+  <div>
+    <h2>Dodawanie Postu</h2>
+    <nav>
+      <button @click="choiceOptions('news')">Aktualności <span>+</span></button>
+      <button @click="choiceOptions('events')">
+        Wydarzenia <span>+</span>
+      </button>
+      <button @click="choiceOptions('photo')">Zdjęcie <span>+</span></button>
+    </nav>
+    <form @submit.prevent="submitForm">
+      <div class="form-control" v-if="title.isActive">
+        <label for="title">Tytuł</label>
+        <input
+          type="text"
+          id="title"
+          v-model.trim="title.value"
+          @blur="clearValidity('title')"
+        />
+        <p v-if="!title.isValid">Brak wprowadzonej wartości.</p>
+      </div>
+      <div class="form-control" v-if="email.isActive">
+        <label for="emial">Email</label>
+        <input
+          type="email"
+          id="email"
+          v-model.trim="email.value"
+          @blur="clearValidity('email')"
+        />
+        <p v-if="!email.isValid">Brak wprowadzonej wartości lub brak "@".</p>
+      </div>
+      <div class="form-control" v-if="phone.isActive">
+        <label for="phone">Telefon</label>
+        <input
+          type="text"
+          id="phone"
+          v-model.trim="phone.value"
+          @blur="clearValidity('phone')"
+        />
+        <p v-if="!phone.isValid">Brak wprowadzonej wartości.</p>
+      </div>
+      <div class="form-control" v-if="date.isActive">
+        <label for="date">Data</label>
+        <input
+          type="date"
+          id="date"
+          v-model.trim="date.value"
+          @blur="clearValidity('date')"
+        />
+        <p v-if="!date.isValid">Brak wprowadzonej wartości.</p>
+      </div>
+      <div class="form-control" v-if="description.isActive">
+        <label for="description">Opis</label>
+        <textarea
+          rows="5"
+          id="description"
+          v-model.trim="description.value"
+          @blur="clearValidity('description')"
+        />
+        <p v-if="!description.isValid">Brak opisu.</p>
+      </div>
+      <div class="form-control" v-if="imgages.isActive">
+        <label for="file">Wybierz zdjcia</label>
+        <input
+          type="file"
+          id="file"
+          name="file"
+          accept=".jpg, .jpeg, .png"
+          @change="previewFiles"
+          multiple
+        />
+        <p v-if="!imgages.isValid">Nie dodano jeszcze zdjęcia</p>
+      </div>
+      <div class="form-control" v-if="author.isActive">
+        <label for="Author">Autor</label>
+        <input
+          type="text"
+          id="Author"
+          v-model.trim="author.value"
+          @blur="clearValidity('author')"
+        />
+        <p v-if="!author.isValid">Brak wprowadzonej wartości</p>
+      </div>
+
+      <p v-if="!formIsValid">Nie wszystkie pola zosta uzupełniones</p>
+      <button>Wyślij</button>
+    </form>
+  </div>
 </template>
 <script>
+import { reactive, ref } from "vue";
 export default {
-  setup() {},
+  setup() {
+    const activeOption = ref("news");
+    const formIsValid = ref(true);
+    const title = reactive({
+      value: "",
+      isValid: true,
+      isActive: true,
+    });
+    const email = reactive({
+      value: "",
+      isValid: true,
+      isActive: true,
+    });
+    const phone = reactive({
+      value: "",
+      isValid: true,
+      isActive: true,
+    });
+    const date = reactive({
+      value: "",
+      isValid: true,
+      isActive: true,
+    });
+    const description = reactive({
+      value: "",
+      isValid: true,
+      isActive: true,
+    });
+    const imgages = reactive({
+      value: [],
+      isValid: true,
+      isActive: true,
+    });
+    const author = reactive({
+      value: "",
+      isValid: true,
+      isActive: true,
+    });
+
+    const clearValidity = (input) => {
+      eval(input).isValid = true;
+    };
+    function previewFiles(event) {
+      const files = event.target.files;
+      imgages.value.push(files);
+    }
+    function choiceOptions(val) {
+      activeOption.value = val;
+      if (activeOption.value === "news") {
+        title.isActive = true;
+        phone.isActive = true;
+        date.isActive = true;
+        email.isActive = true;
+        description.isActive = true;
+        imgages.isActive = true;
+        author.isActive = true;
+      }
+      if (activeOption.value === "events") {
+        title.isActive = true;
+        phone.isActive = true;
+        date.isActive = true;
+        email.isActive = true;
+        description.isActive = false;
+        imgages.isActive = false;
+        author.isActive = false;
+      }
+      if (activeOption.value === "photo") {
+        title.isActive = true;
+        phone.isActive = false;
+        date.isActive = false;
+        email.isActive = false;
+        description.isActive = false;
+        imgages.isActive = true;
+        author.isActive = false;
+      }
+    }
+    function inputValid() {
+      formIsValid.value = true;
+      if (title.value === "" && title.isActive) {
+        title.isValid = false;
+        formIsValid.value = false;
+      }
+      if (phone.value === "" && phone.isActive) {
+        phone.isValid = false;
+        formIsValid.value = false;
+      }
+      if (
+        (email.value === "" && email.isActive) ||
+        !email.value.includes("@")
+      ) {
+        email.isValid = false;
+        formIsValid.value = false;
+      }
+      if (date.value === "" && date.isActive) {
+        date.isValid = false;
+        formIsValid.value = false;
+      }
+      if (description.value === "" && description.isActive) {
+        description.isValid = false;
+        formIsValid.value = false;
+      }
+      if (imgages.value.length === 0 && imgages.isActive) {
+        imgages.isValid = false;
+        formIsValid.value = false;
+      }
+
+      if (author.value === "" && author.isActive) {
+        author.isValid = false;
+        formIsValid.value = false;
+      }
+    }
+    function submitForm() {
+      // if (!formIsValid.value) return;
+      inputValid();
+    }
+
+    return {
+      previewFiles,
+      choiceOptions,
+      submitForm,
+      inputValid,
+      clearValidity,
+      activeOption,
+      formIsValid,
+      title,
+      email,
+      phone,
+      date,
+      description,
+      imgages,
+      author,
+    };
+  },
 };
 </script>
+<style scoped>
+.form-control {
+  margin: 0.5rem 0;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="checkbox"] + label {
+  font-weight: normal;
+  display: inline;
+  margin: 0 0 0 0.5rem;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  font: inherit;
+}
+
+input:focus,
+textarea:focus {
+  background-color: #f0e6fd;
+  outline: none;
+  border-color: #3d008d;
+}
+
+input[type="checkbox"] {
+  display: inline;
+  width: auto;
+  border: none;
+}
+
+input[type="checkbox"]:focus {
+  outline: #3d008d solid 1px;
+}
+
+h3 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.invalid label {
+  color: red;
+}
+
+.invalid input,
+.invalid textarea {
+  border: 1px solid red;
+}
+</style>
