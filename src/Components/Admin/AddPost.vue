@@ -120,8 +120,12 @@
 </template>
 <script>
 import { reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
   setup() {
+    const store = useStore();
+    const route = useRouter();
     const activeOption = ref("news");
     const formIsValid = ref(true);
     const title = reactive({
@@ -171,9 +175,9 @@ export default {
       activeOption.value = val;
       if (activeOption.value === "news") {
         title.isActive = true;
-        phone.isActive = true;
+        phone.isActive = false;
         date.isActive = true;
-        email.isActive = true;
+        email.isActive = false;
         description.isActive = true;
         images.isActive = true;
         author.isActive = true;
@@ -207,10 +211,7 @@ export default {
         phone.isValid = false;
         formIsValid.value = false;
       }
-      if (
-        (email.value === "" && email.isActive) ||
-        !email.value.includes("@")
-      ) {
+      if (email.value === "" && email.isActive && !email.value.includes("@")) {
         email.isValid = false;
         formIsValid.value = false;
       }
@@ -235,9 +236,35 @@ export default {
     function submitForm() {
       inputValid();
       if (!formIsValid.value) return;
-      console.log("ok");
-    }
 
+      if (activeOption.value === "news") {
+        const message = {
+          title: title.value,
+          publishDate: date.value,
+          description: description.value,
+          img: images.value[0],
+          author: author.value,
+        };
+        store.dispatch("News/createNews", message);
+      }
+      if (activeOption.value === "events") {
+        const message = {
+          title: title.value,
+          phone: phone.value,
+          date: date.value,
+          email: email.value,
+        };
+        store.dispatch("Events/cerateEvent", message);
+        route.replace("/eventCalendar");
+      }
+      if (activeOption.value === "photo") {
+        const message = {
+          title: title.value,
+          images: images.value[0],
+        };
+        console.log(message);
+      }
+    }
     return {
       previewFiles,
       choiceOptions,
