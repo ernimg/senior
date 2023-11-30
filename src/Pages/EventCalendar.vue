@@ -1,14 +1,17 @@
 <template>
-  <event-item
-    v-for="event in EventsCalendar"
-    :key="event.id"
-    :id="event.id"
-    :e-title="event.eTitle"
-    :e-date="event.eDate"
-    :e-mail="event.eMail"
-    :e-phone="event.ePhone"
-    @rm-event="removeApp"
-  ></event-item>
+  <div>
+    <button @click="updateEvents">Refresh</button>
+    <event-item
+      v-for="event in EventsCalendar"
+      :key="event.id"
+      :id="event.id"
+      :e-title="event.eTitle"
+      :e-date="event.eDate"
+      :e-mail="event.eMail"
+      :e-phone="event.ePhone"
+      @rm-event="removeApp"
+    ></event-item>
+  </div>
 </template>
 <script>
 import { computed } from "vue";
@@ -26,7 +29,10 @@ export default {
     function removeApp(param) {
       store.dispatch("Events/rmAppoitment", param);
     }
-    return { EventsCalendar, removeApp };
+    function updateEvents() {
+      store.dispatch("Events/lodaEvents");
+    }
+    return { EventsCalendar, removeApp, updateEvents };
   },
 };
 </script>
