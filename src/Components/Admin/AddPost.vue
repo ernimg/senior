@@ -119,7 +119,7 @@
   </div>
 </template>
 <script>
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 export default {
@@ -246,6 +246,7 @@ export default {
           author: author.value,
         };
         store.dispatch("News/createNews", message);
+        route.replace("/news");
       }
       if (activeOption.value === "events") {
         const message = {
@@ -262,9 +263,13 @@ export default {
           title: title.value,
           images: images.value[0],
         };
-        console.log(message);
+
+        store.dispatch("Galery/createPicture", message);
+        route.replace("/gallery");
       }
     }
+    onMounted(() => choiceOptions("news"));
+
     return {
       previewFiles,
       choiceOptions,
