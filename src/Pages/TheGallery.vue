@@ -7,9 +7,10 @@
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
       </p>
     </div>
-    <div>
+    <div v-else>
       <div v-for="image in ImagagesItem" :key="image.id">
         {{ image.title }}
+        <img :src="image.url" alt="" srcset="" />
       </div>
     </div>
   </div>
