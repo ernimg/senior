@@ -33,28 +33,30 @@ export default {
   },
 
   async loadGallery(context, payload) {
-    // const url = `https://api.cloudinary.com/v1_1/dz3kblnlk/resources/image/upload.json`;
-    const response = await axios.get(
-      "https://235334789777131:vkX_nb9HpGiYBhNJZiZJzSQAEFY@api.cloudinary.com/v1_1/dz3kblnlk/resources"
-    );
-    console.log(response);
-    // const api_key = "235334789777131";
-    // const api_secret = "vkX_nb9HpGiYBhNJZiZJzSQAEFY";
-    // await fetch(url, {
-    //   method: "GET",
-    //   // mode: "no-cors",
-    //   headers: {
-    //     Authorization: "Basic " + btoa(api_key + ":" + api_secret),
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error uploading the file:", error);
-    //   });
-    // console.log(files);
+    const url = `https://api.cloudinary.com/v1_1/dz3kblnlk/resources/image/upload.json`;
+    // const response = await axios.get(
+    //   "https://235334789777131:vkX_nb9HpGiYBhNJZiZJzSQAEFY@api.cloudinary.com/v1_1/dz3kblnlk/resources"
+    // );
+    // console.log("***response msg***");
+    // console.log(response);
+
+    const api_key = "235334789777131";
+    const api_secret = "vkX_nb9HpGiYBhNJZiZJzSQAEFY";
+    await fetch(url, {
+      method: "GET",
+      // mode: "no-cors",
+      headers: {
+        Authorization: "Basic " + btoa(api_key + ":" + api_secret),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error uploading the file:", error);
+      });
+    console.log(files);
     console.log(context, payload);
   },
 };
