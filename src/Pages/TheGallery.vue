@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Galeria zdjęć</h2>
+    <button @click="loadGallery">Refresh</button>
     <div v-if="!isImages">
       <h3>Brak treści ...</h3>
       <p>
@@ -28,10 +29,13 @@ export default {
     const isImages = computed(() => {
       return store.getters["Galery/existPicures"];
     });
-
+    function loadGallery() {
+      store.dispatch("Galery/loadGallery");
+    }
     return {
       ImagagesItem,
       isImages,
+      loadGallery,
     };
   },
 };
