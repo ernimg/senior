@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export default {
   async createPicture(context, payload) {
     const file = {};
@@ -56,7 +54,7 @@ export default {
       .catch((error) => {
         console.error("Error uploading the file:", error);
       });
-    console.log(files);
+
     console.log(context, payload);
   },
 };
