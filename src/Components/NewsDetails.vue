@@ -3,8 +3,12 @@
     <h2>{{ printTitle }}</h2>
   </div>
   <article>
+    <img :src="pirntImg[0]" alt="img" />
     <p>{{ printDescription }}</p>
   </article>
+  <aside>
+    <img v-for="img in pirntImg.slice(1)" :src="img" alt="img" :key="img" />
+  </aside>
   <footer>
     <span>
       <span>{{ printPublishDateTime }}</span>
@@ -41,7 +45,16 @@ export default {
     const printAuthor = computed(() => {
       return selectedNenws.value.author;
     });
-    return { printTitle, printDescription, printPublishDateTime, printAuthor };
+    const pirntImg = computed(() => {
+      return selectedNenws.value.images;
+    });
+    return {
+      printTitle,
+      printDescription,
+      printPublishDateTime,
+      printAuthor,
+      pirntImg,
+    };
   },
 };
 </script>

@@ -53,20 +53,6 @@
       </div>
       <div
         class="form-control"
-        v-if="date.isActive"
-        :class="{ invalid: !date.isValid }"
-      >
-        <label for="date">Data</label>
-        <input
-          type="date"
-          id="date"
-          v-model.trim="date.value"
-          @blur="clearValidity('date')"
-        />
-        <p v-if="!date.isValid">Brak wprowadzonej wartości.</p>
-      </div>
-      <div
-        class="form-control"
         v-if="description.isActive"
         :class="{ invalid: !description.isValid }"
       >
@@ -145,8 +131,8 @@ export default {
     });
     const date = reactive({
       value: "",
-      isValid: true,
-      isActive: true,
+      // isValid: true,
+      // isActive: true,
     });
     const description = reactive({
       value: "",
@@ -176,7 +162,6 @@ export default {
       if (activeOption.value === "news") {
         title.isActive = true;
         phone.isActive = false;
-        date.isActive = true;
         email.isActive = false;
         description.isActive = true;
         images.isActive = true;
@@ -185,7 +170,6 @@ export default {
       if (activeOption.value === "events") {
         title.isActive = true;
         phone.isActive = true;
-        date.isActive = true;
         email.isActive = true;
         description.isActive = false;
         images.isActive = false;
@@ -194,7 +178,6 @@ export default {
       if (activeOption.value === "photo") {
         title.isActive = true;
         phone.isActive = false;
-        date.isActive = false;
         email.isActive = false;
         description.isActive = false;
         images.isActive = true;
@@ -213,10 +196,6 @@ export default {
       }
       if (email.value === "" && email.isActive && !email.value.includes("@")) {
         email.isValid = false;
-        formIsValid.value = false;
-      }
-      if (date.value === "" && date.isActive) {
-        date.isValid = false;
         formIsValid.value = false;
       }
       if (description.value === "" && description.isActive) {
@@ -240,7 +219,6 @@ export default {
       if (activeOption.value === "news") {
         const message = {
           title: title.value,
-          publishDate: date.value,
           description: description.value,
           img: images.value[0],
           author: author.value,

@@ -15,6 +15,7 @@ export default {
           img: null,
           publishDate: "13.10.2023",
           author: "ernimg",
+          images: [],
         },
         {
           id: "n2",
@@ -24,6 +25,7 @@ export default {
           img: null,
           publishDate: "13.10.2023",
           author: "ernimg",
+          images: [],
         },
         {
           id: "n3",
@@ -33,6 +35,7 @@ export default {
           img: null,
           publishDate: "13.10.2023",
           author: "ernimg",
+          images: [],
         },
       ],
     };

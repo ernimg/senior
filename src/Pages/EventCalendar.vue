@@ -1,7 +1,14 @@
 <template>
   <div>
     <button @click="updateEvents">Refresh</button>
+    <div v-if="!isEvent">
+      <h3>Brak treści ...</h3>
+      <p>
+        Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
+      </p>
+    </div>
     <event-item
+      v-else
       v-for="event in EventsCalendar"
       :key="event.id"
       :id="event.id"
@@ -26,6 +33,9 @@ export default {
     const EventsCalendar = computed(() => {
       return store.getters["Events/getEvents"];
     });
+    const isEvent = computed(() => {
+      return store.getters["Events/isEvents"];
+    });
     function removeApp(param) {
       store.dispatch("Events/rmAppoitment", param);
     }
@@ -34,7 +44,7 @@ export default {
     }
     onMounted(updateEvents);
 
-    return { EventsCalendar, removeApp, updateEvents };
+    return { EventsCalendar, removeApp, updateEvents, isEvent };
   },
 };
 </script>

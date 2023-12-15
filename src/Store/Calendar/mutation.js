@@ -7,6 +7,8 @@ export default {
     state.events.push(payload);
   },
   setEvent(state, payload) {
+    console.log("set ivent: " + typeof payload);
+    console.log("dlugosc: " + payload.length);
     state.events = payload;
   },
 };
