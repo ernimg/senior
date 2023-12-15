@@ -1,7 +1,19 @@
 export default {
-  rmAppoitment(context, payload) {
+  async rmAppoitment(context, payload) {
     const news = context.state.events;
     const newList = news.filter((app) => app.id !== payload);
+    const response = await fetch(
+      `https://senior-38e13-default-rtdb.firebaseio.com/events/${payload}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+    const responseData = await response.json();
+    if ((await response).status != 200) {
+      const error = new Error(responseData.message || "Faild to fetch");
+      throw error;
+    }
+    console.log(response);
     context.commit("remove", newList);
   },
   async cerateEvent(context, payload) {

@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import EventItem from "@/Components/ListItem/EventItem.vue";
 export default {
@@ -32,6 +32,8 @@ export default {
     function updateEvents() {
       store.dispatch("Events/lodaEvents");
     }
+    onMounted(updateEvents);
+
     return { EventsCalendar, removeApp, updateEvents };
   },
 };
