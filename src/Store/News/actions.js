@@ -1,7 +1,21 @@
 export default {
-  rmNews(context, payload) {
+  async rmNews(context, payload) {
     const news = context.state.news;
     const newList = news.filter((news) => news.id !== payload);
+
+    await fetch(
+      `https://senior-38e13-default-rtdb.firebaseio.com/posts/${payload}.json`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error deleting the file:", error);
+      });
+
     context.commit("remove", newList);
   },
   async createNews(context, payload) {
@@ -55,5 +69,29 @@ export default {
       });
 
     context.commit("addNews", news);
+  },
+  async loadNews(context) {
+    const news = [];
+    await fetch(`https://senior-38e13-default-rtdb.firebaseio.com/posts.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        for (const key in data) {
+          const item = {
+            id: key,
+            title: data[key].title,
+            description: data[key].description,
+            publishDate: data[key].publishDate,
+            author: data[key].author,
+            images: data[key].images,
+          };
+          console.log(item);
+          news.push(item);
+        }
+      })
+      .catch((error) => {
+        console.error("Error get the news:", error);
+      });
+
+    context.commit("setNews", news);
   },
 };

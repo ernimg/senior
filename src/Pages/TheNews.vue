@@ -1,5 +1,6 @@
 <template>
   <section class="news">
+    <button @click="loadNews">Refresh</button>
     <div class="news__header">
       <h2>Aktualności</h2>
     </div>
@@ -23,7 +24,7 @@
   </section>
 </template>
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
 import NewsItem from "../Components/ListItem/NewsItem.vue";
@@ -42,7 +43,11 @@ export default {
     function remove(param) {
       store.dispatch("News/rmNews", param);
     }
-    return { NewsItems, isNews, remove };
+    function loadNews() {
+      store.dispatch("News/loadNews");
+    }
+    onMounted(loadNews);
+    return { NewsItems, isNews, remove, loadNews };
   },
 };
 </script>
