@@ -67,6 +67,20 @@
       </div>
       <div
         class="form-control"
+        v-if="date.isActive"
+        :class="{ invalid: !date.isValid }"
+      >
+        <label for="date">Data</label>
+        <input
+          type="date"
+          id="date"
+          v-model.trim="date.value"
+          @blur="clearValidity('date')"
+        />
+        <p v-if="!date.isValid">Brak wprowadzonej wartości.</p>
+      </div>
+      <div
+        class="form-control"
         v-if="images.isActive"
         :class="{ invalid: !images.isValid }"
       >
@@ -131,8 +145,8 @@ export default {
     });
     const date = reactive({
       value: "",
-      // isValid: true,
-      // isActive: true,
+      isValid: true,
+      isActive: true,
     });
     const description = reactive({
       value: "",
@@ -164,6 +178,7 @@ export default {
         phone.isActive = false;
         email.isActive = false;
         description.isActive = true;
+        date.isActive = false;
         images.isActive = true;
         author.isActive = true;
       }
@@ -171,7 +186,8 @@ export default {
         title.isActive = true;
         phone.isActive = true;
         email.isActive = true;
-        description.isActive = false;
+        description.isActive = true;
+        date.isActive = true;
         images.isActive = false;
         author.isActive = false;
       }
@@ -180,6 +196,7 @@ export default {
         phone.isActive = false;
         email.isActive = false;
         description.isActive = false;
+        date.isActive = false;
         images.isActive = true;
         author.isActive = false;
       }
@@ -200,6 +217,10 @@ export default {
       }
       if (description.value === "" && description.isActive) {
         description.isValid = false;
+        formIsValid.value = false;
+      }
+      if (date.value === "" && date.isActive) {
+        date.isValid = false;
         formIsValid.value = false;
       }
       if (images.value.length === 0 && images.isActive) {
