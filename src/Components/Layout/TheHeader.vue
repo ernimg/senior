@@ -8,7 +8,8 @@
         <router-link to="/eventCalendar">Terminy wydarzeń</router-link>
         <router-link to="/gallery">Galeria zdjęć</router-link>
         <router-link to="/contact">Kontakt</router-link>
-        <router-link to="/addPost">Logowanie</router-link>
+        <router-link to="/auth">Logowanie</router-link>
+        <router-link to="/addPost">panelAdmina</router-link>
       </ul>
     </nav>
   </header>

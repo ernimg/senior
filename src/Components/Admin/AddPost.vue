@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Dodawanie Postu</h2>
+    <h2>Panel Administracyjny</h2>
     <nav>
       <button @click="choiceOptions('news')">Aktualności <span>+</span></button>
       <button @click="choiceOptions('events')">
@@ -8,114 +8,116 @@
       </button>
       <button @click="choiceOptions('photo')">Zdjęcie <span>+</span></button>
     </nav>
-    <form @submit.prevent="submitForm">
-      <div
-        class="form-control"
-        v-if="title.isActive"
-        :class="{ invalid: !title.isValid }"
-      >
-        <label for="title">Tytuł</label>
-        <input
-          type="text"
-          id="title"
-          v-model.trim="title.value"
-          @blur="clearValidity('title')"
-        />
-        <p v-if="!title.isValid">Brak wprowadzonej wartości.</p>
-      </div>
-      <div
-        class="form-control"
-        v-if="email.isActive"
-        :class="{ invalid: !email.isValid }"
-      >
-        <label for="emial">Email</label>
-        <input
-          type="email"
-          id="email"
-          v-model.trim="email.value"
-          @blur="clearValidity('email')"
-        />
-        <p v-if="!email.isValid">Brak wprowadzonej wartości lub brak "@".</p>
-      </div>
-      <div
-        class="form-control"
-        v-if="phone.isActive"
-        :class="{ invalid: !phone.isValid }"
-      >
-        <label for="phone">Telefon</label>
-        <input
-          type="text"
-          id="phone"
-          v-model.trim="phone.value"
-          @blur="clearValidity('phone')"
-        />
-        <p v-if="!phone.isValid">Brak wprowadzonej wartości.</p>
-      </div>
-      <div
-        class="form-control"
-        v-if="description.isActive"
-        :class="{ invalid: !description.isValid }"
-      >
-        <label for="description">Opis</label>
-        <textarea
-          rows="5"
-          id="description"
-          v-model.trim="description.value"
-          @blur="clearValidity('description')"
-        />
-        <p v-if="!description.isValid">Brak opisu.</p>
-      </div>
-      <div
-        class="form-control"
-        v-if="date.isActive"
-        :class="{ invalid: !date.isValid }"
-      >
-        <label for="date">Data</label>
-        <input
-          type="date"
-          id="date"
-          v-model.trim="date.value"
-          @blur="clearValidity('date')"
-        />
-        <p v-if="!date.isValid">Brak wprowadzonej wartości.</p>
-      </div>
-      <div
-        class="form-control"
-        v-if="images.isActive"
-        :class="{ invalid: !images.isValid }"
-      >
-        <label for="file">Wybierz zdjcia</label>
-        <input
-          type="file"
-          id="file"
-          name="file"
-          accept=".jpg, .jpeg, .png"
-          @change="previewFiles"
-          @blur="clearValidity('images')"
-          multiple
-        />
-        <p v-if="!images.isValid">Nie dodano jeszcze zdjęcia</p>
-      </div>
-      <div
-        class="form-control"
-        v-if="author.isActive"
-        :class="{ invalid: !author.isValid }"
-      >
-        <label for="Author">Autor</label>
-        <input
-          type="text"
-          id="Author"
-          v-model.trim="author.value"
-          @blur="clearValidity('author')"
-        />
-        <p v-if="!author.isValid">Brak wprowadzonej wartości</p>
-      </div>
+    <base-container>
+      <form @submit.prevent="submitForm">
+        <div
+          class="form-control"
+          v-if="title.isActive"
+          :class="{ invalid: !title.isValid }"
+        >
+          <label for="title">Tytuł</label>
+          <input
+            type="text"
+            id="title"
+            v-model.trim="title.value"
+            @blur="clearValidity('title')"
+          />
+          <p v-if="!title.isValid">Brak wprowadzonej wartości.</p>
+        </div>
+        <div
+          class="form-control"
+          v-if="email.isActive"
+          :class="{ invalid: !email.isValid }"
+        >
+          <label for="emial">Email</label>
+          <input
+            type="email"
+            id="email"
+            v-model.trim="email.value"
+            @blur="clearValidity('email')"
+          />
+          <p v-if="!email.isValid">Brak wprowadzonej wartości lub brak "@".</p>
+        </div>
+        <div
+          class="form-control"
+          v-if="phone.isActive"
+          :class="{ invalid: !phone.isValid }"
+        >
+          <label for="phone">Telefon</label>
+          <input
+            type="text"
+            id="phone"
+            v-model.trim="phone.value"
+            @blur="clearValidity('phone')"
+          />
+          <p v-if="!phone.isValid">Brak wprowadzonej wartości.</p>
+        </div>
+        <div
+          class="form-control"
+          v-if="description.isActive"
+          :class="{ invalid: !description.isValid }"
+        >
+          <label for="description">Opis</label>
+          <textarea
+            rows="5"
+            id="description"
+            v-model.trim="description.value"
+            @blur="clearValidity('description')"
+          />
+          <p v-if="!description.isValid">Brak opisu.</p>
+        </div>
+        <div
+          class="form-control"
+          v-if="date.isActive"
+          :class="{ invalid: !date.isValid }"
+        >
+          <label for="date">Data</label>
+          <input
+            type="date"
+            id="date"
+            v-model.trim="date.value"
+            @blur="clearValidity('date')"
+          />
+          <p v-if="!date.isValid">Brak wprowadzonej wartości.</p>
+        </div>
+        <div
+          class="form-control"
+          v-if="images.isActive"
+          :class="{ invalid: !images.isValid }"
+        >
+          <label for="file">Wybierz zdjcia</label>
+          <input
+            type="file"
+            id="file"
+            name="file"
+            accept=".jpg, .jpeg, .png"
+            @change="previewFiles"
+            @blur="clearValidity('images')"
+            multiple
+          />
+          <p v-if="!images.isValid">Nie dodano jeszcze zdjęcia</p>
+        </div>
+        <div
+          class="form-control"
+          v-if="author.isActive"
+          :class="{ invalid: !author.isValid }"
+        >
+          <label for="Author">Autor</label>
+          <input
+            type="text"
+            id="Author"
+            v-model.trim="author.value"
+            @blur="clearValidity('author')"
+          />
+          <p v-if="!author.isValid">Brak wprowadzonej wartości</p>
+        </div>
 
-      <p class="invalid" v-if="!formIsValid">
-        Nie wszystkie pola zosta uzupełniones
-      </p>
-      <button>Wyślij</button>
-    </form>
+        <p class="invalid" v-if="!formIsValid">
+          Nie wszystkie pola zosta uzupełniones
+        </p>
+        <button>Wyślij</button>
+      </form>
+    </base-container>
   </div>
 </template>
 <script>
