@@ -7,6 +7,7 @@ import EventCalendar from "./Pages/EventCalendar.vue";
 import NewsDetails from "./Components/NewsDetails.vue";
 import UserAuth from "./Pages/Auth/UserAuth.vue";
 import AddPost from "./Components/Admin/AddPost.vue";
+import store from "./Store/index.js";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -17,10 +18,19 @@ const router = createRouter({
     { path: "/eventCalendar", component: EventCalendar },
     { path: "/gallery", component: TheGallery },
     { path: "/contact", component: TheContact },
-    { path: "/auth", component: UserAuth },
-    { path: "/addPost", component: AddPost },
+    { path: "/auth", component: UserAuth, meta: { requiresUnauth: true } },
+    { path: "/addPost", component: AddPost, meta: { requiresAuth: true } },
     { path: "/:notFound(.*)", redirect: "/" },
   ],
+});
+router.beforeEach((to, _, next) => {
+  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+    next("/auth");
+  } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
+    next("/mainPage");
+  } else {
+    next();
+  }
 });
 
 export default router;

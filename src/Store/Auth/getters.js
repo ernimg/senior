@@ -1,5 +1,8 @@
 export default {
-  getFirebaseKey(state) {
-    return state.firebase_api_key;
+  getToken(state) {
+    return state.token;
+  },
+  isAuthenticated(state) {
+    return !!state.token;
   },
 };

@@ -17,8 +17,10 @@
 <script>
 import { ref } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
   setup() {
+    const router = useRouter();
     const store = useStore();
     const email = ref("");
     const password = ref("");
@@ -30,6 +32,7 @@ export default {
         password: password.value,
       };
       store.dispatch("Auth/logInToApp", credential);
+      router.replace("/addPost");
     }
 
     return { email, password, isLogged, logIn };
