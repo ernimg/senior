@@ -17,22 +17,30 @@
 <script>
 import { ref } from "vue";
 import { useStore } from "vuex";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const store = useStore();
     const email = ref("");
     const password = ref("");
     const isLogged = ref(false);
+    const err = ref("");
 
-    function logIn() {
+    async function logIn() {
       const credential = {
         email: email.value,
         password: password.value,
       };
-      store.dispatch("Auth/logInToApp", credential);
-      router.replace("/addPost");
+      try {
+        await store.dispatch("Auth/logInToApp", credential);
+      } catch (error) {
+        err.value = error.message || "faild to logIn";
+      }
+      const queryURL = "/" + route.query.redirect || "addPost";
+      console.log(queryURL);
+      router.replace(queryURL);
     }
 
     return { email, password, isLogged, logIn };

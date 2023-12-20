@@ -18,16 +18,14 @@ const router = createRouter({
     { path: "/eventCalendar", component: EventCalendar },
     { path: "/gallery", component: TheGallery },
     { path: "/contact", component: TheContact },
-    { path: "/auth", component: UserAuth, meta: { requiresUnauth: true } },
+    { path: "/auth", component: UserAuth },
     { path: "/addPost", component: AddPost, meta: { requiresAuth: true } },
     { path: "/:notFound(.*)", redirect: "/" },
   ],
 });
 router.beforeEach((to, _, next) => {
-  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
-    next("/auth");
-  } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
-    next("/mainPage");
+  if (to.meta.requiresAuth) {
+    store.getters.isAuthenticated ? next() : next("/auth");
   } else {
     next();
   }
