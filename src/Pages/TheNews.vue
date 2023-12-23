@@ -1,6 +1,6 @@
 <template>
   <section class="news">
-    <button @click="loadNews">Refresh</button>
+    <button @click="loadNews(true)">Refresh</button>
     <div class="news__header">
       <h2>Aktualności</h2>
     </div>
@@ -43,8 +43,14 @@ export default {
     function remove(param) {
       store.dispatch("News/rmNews", param);
     }
-    function loadNews() {
-      store.dispatch("News/loadNews");
+    async function loadNews(refresh = false) {
+      try {
+        await store.dispatch("News/loadNews", {
+          foreceRefresh: refresh,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
     onMounted(loadNews);
     return { NewsItems, isNews, remove, loadNews };

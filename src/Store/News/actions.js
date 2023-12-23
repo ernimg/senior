@@ -2,9 +2,11 @@ export default {
   async rmNews(context, payload) {
     const news = context.state.news;
     const newList = news.filter((news) => news.id !== payload);
+    const token = context.rootGetters["Auth/getToken"];
 
     await fetch(
-      `https://senior-38e13-default-rtdb.firebaseio.com/posts/${payload}.json`,
+      `https://senior-38e13-default-rtdb.firebaseio.com/posts/${payload}.json?auth=` +
+        token,
       {
         method: "DELETE",
       }
@@ -70,7 +72,11 @@ export default {
 
     context.commit("addNews", news);
   },
-  async loadNews(context) {
+  async loadNews(context, payload) {
+    console.log(payload.foreceRefresh);
+    // if(payload.foreceRefresh){
+    //   console.log(object);
+    // }
     const news = [];
     await fetch(`https://senior-38e13-default-rtdb.firebaseio.com/posts.json`)
       .then((response) => response.json())

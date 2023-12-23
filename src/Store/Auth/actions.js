@@ -29,4 +29,13 @@ export default {
         throw err;
       });
   },
+
+  logOuth(context) {
+    const auth = {
+      token: null,
+      userId: null,
+      tokenExpiration: null,
+    };
+    context.commit("setUser", auth);
+  },
 };

@@ -6,7 +6,7 @@
         <span>{{ publishDate }}</span>
       </div>
       <router-link :to="newsIdUrl"> Zobacz więcej </router-link>
-      <button @click="removeNews(id)">
+      <button v-if="isAuth" @click="removeNews(id)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -28,17 +28,22 @@
 <script>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 export default {
   props: ["id", "title", "publishDate"],
   setup(props, context) {
     const route = useRoute();
+    const store = useStore();
     const newsIdUrl = computed(() => {
       return route.path + "/" + props.id;
+    });
+    const isAuth = computed(() => {
+      return store.getters["Auth/isAuthenticated"];
     });
     function removeNews(param) {
       context.emit("rm-wews", param);
     }
-    return { newsIdUrl, removeNews };
+    return { newsIdUrl, removeNews, isAuth };
   },
 };
 </script>

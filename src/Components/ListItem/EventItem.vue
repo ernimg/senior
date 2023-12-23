@@ -10,7 +10,7 @@
         <span>{{ ePhone }}</span>
       </div>
     </li>
-    <button @click="removeEvent(id)">
+    <button v-if="isAuth" @click="removeEvent(id)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -29,13 +29,19 @@
   </base-container>
 </template>
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
 export default {
   props: ["id", "eTitle", "eDate", "eMail", "ePhone"],
   setup(_, contex) {
+    const store = useStore();
+    const isAuth = computed(() => {
+      return store.getters["Auth/isAuthenticated"];
+    });
     function removeEvent(param) {
       contex.emit("rm-event", param);
     }
-    return { removeEvent };
+    return { removeEvent, isAuth };
   },
 };
 </script>
