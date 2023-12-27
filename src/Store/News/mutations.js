@@ -8,4 +8,7 @@ export default {
   setNews(state, payload) {
     state.news = payload;
   },
+  setTime(state) {
+    state.upDate = new Date().getTime();
+  },
 };

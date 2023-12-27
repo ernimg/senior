@@ -1,3 +1,5 @@
+import getters from "./getters";
+
 export default {
   async rmNews(context, payload) {
     const news = context.state.news;
@@ -41,8 +43,6 @@ export default {
       fd.append("tags", "xxx");
       fd.append("file", img);
 
-      console.log(img);
-
       await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
         method: "POST",
         body: fd,
@@ -73,10 +73,10 @@ export default {
     context.commit("addNews", news);
   },
   async loadNews(context, payload) {
-    console.log(payload.foreceRefresh);
-    // if(payload.foreceRefresh){
-    //   console.log(object);
-    // }
+    console.log(getters.shouldUpdate);
+    if (payload.foreceRefresh && !getters.shouldUpdate) return;
+
+    console.log("Pnowne ładowanie");
     const news = [];
     await fetch(`https://senior-38e13-default-rtdb.firebaseio.com/posts.json`)
       .then((response) => response.json())
@@ -90,7 +90,7 @@ export default {
             author: data[key].author,
             images: data[key].images,
           };
-          console.log(item);
+
           news.push(item);
         }
       })
@@ -99,5 +99,6 @@ export default {
       });
 
     context.commit("setNews", news);
+    context.commit("setTime");
   },
 };
