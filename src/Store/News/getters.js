@@ -15,7 +15,6 @@ export default {
       return true;
     }
     const genDate = new Date().getTime();
-
     return (genDate - updateDate) / 1000 > 60;
   },
 };

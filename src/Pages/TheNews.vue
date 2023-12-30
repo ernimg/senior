@@ -2,10 +2,7 @@
   <section class="news">
     <button @click="loadNews(true)">Refresh</button>
     <div class="news__header">
-      <h2>
-        Aktualności
-        <p>{{ getDate }}</p>
-      </h2>
+      <h2>Aktualności</h2>
     </div>
     <div v-if="!isNews">
       <h3>Brak treści ...</h3>
@@ -40,9 +37,7 @@ export default {
     const NewsItems = computed(() => {
       return store.getters["News/getNews"];
     });
-    const getDate = computed(() => {
-      return store.getters["News/getLastUpdateDate"];
-    });
+
     const isNews = computed(() => {
       return store.getters["News/isNews"];
     });
@@ -59,7 +54,7 @@ export default {
       }
     }
     onMounted(loadNews);
-    return { NewsItems, isNews, remove, loadNews, getDate };
+    return { NewsItems, isNews, remove, loadNews };
   },
 };
 </script>

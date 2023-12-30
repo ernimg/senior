@@ -57,9 +57,10 @@ export default {
     }
 
     news.id = "id" + Math.random().toString(15).slice(2);
-
+    const token = context.rootGetters["Auth/getToken"];
     await fetch(
-      `https://senior-38e13-default-rtdb.firebaseio.com/posts/${news.id}.json`,
+      `https://senior-38e13-default-rtdb.firebaseio.com/posts/${news.id}.json?auth=` +
+        token,
       {
         method: "PUT",
         body: JSON.stringify(news),
@@ -73,10 +74,9 @@ export default {
     context.commit("addNews", news);
   },
   async loadNews(context, payload) {
-    console.log(getters.shouldUpdate);
+    console.log(payload.foreceRefresh, !getters.shouldUpdate);
     if (payload.foreceRefresh && !getters.shouldUpdate) return;
 
-    console.log("Pnowne ładowanie");
     const news = [];
     await fetch(`https://senior-38e13-default-rtdb.firebaseio.com/posts.json`)
       .then((response) => response.json())
