@@ -27,8 +27,10 @@ export default {
       eMail: payload.email,
     };
     event.id = "id" + Math.random().toString(15).slice(2);
+    const token = context.rootGetters["Auth/getToken"];
     const response = await fetch(
-      `https://senior-38e13-default-rtdb.firebaseio.com/events/${event.id}.json`,
+      `https://senior-38e13-default-rtdb.firebaseio.com/events/${event.id}.json?auth=` +
+        token,
       {
         method: "PUT",
         body: JSON.stringify(event),
