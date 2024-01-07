@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Galeria zdjęć</h2>
+    <button @click="loadGallery">Refresh</button>
     <div v-if="!isImages">
       <h3>Brak treści ...</h3>
       <p>
@@ -17,7 +18,7 @@
 </template>
 <script>
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 export default {
   setup() {
     const store = useStore();
@@ -28,9 +29,14 @@ export default {
     const isImages = computed(() => {
       return store.getters["Galery/existPicures"];
     });
+    function loadGallery() {
+      store.dispatch("Galery/loadGallery");
+    }
+    onMounted(loadGallery);
     return {
       ImagagesItem,
       isImages,
+      loadGallery,
     };
   },
 };

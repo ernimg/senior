@@ -1,6 +1,10 @@
 export default {
   setUser(state, payload) {
-    state.token = payload.token;
+    if (payload.token) {
+      localStorage.setItem("token", payload.token);
+    }
+
+    state.token = localStorage.getItem("token");
     state.userId = payload.userId;
     state.tokenExpiration = payload.tokenExpiration;
   },

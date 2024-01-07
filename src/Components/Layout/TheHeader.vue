@@ -11,7 +11,7 @@
         <router-link v-if="!isAuth" to="/auth?redirect=addPost"
           >Logowanie</router-link
         >
-        <button @click="logOuth" v-else>Wyloguj</button>
+        <button @click="logOut" v-else>Wyloguj</button>
       </ul>
     </nav>
   </header>
@@ -25,15 +25,16 @@ export default {
     const store = useStore();
     const router = useRouter();
     const isAuth = computed(() => {
+      console.log("auth - " + store.getters["Auth/isAuthenticated"]);
       return store.getters["Auth/isAuthenticated"];
     });
-    function logOuth() {
-      store.dispatch("Auth/logOuth");
+    function logOut() {
+      store.dispatch("Auth/logOut");
       router.replace("/");
     }
     return {
       isAuth,
-      logOuth,
+      logOut,
     };
   },
 };

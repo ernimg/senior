@@ -3,4 +3,7 @@ export default {
     console.log(payload);
     state.images.push(payload);
   },
+  setPictures(state, payload) {
+    state.images = payload;
+  },
 };

@@ -30,9 +30,9 @@ export default {
       });
   },
 
-  logOuth(context) {
+  logOut(context) {
     const auth = {
-      token: null,
+      token: localStorage.clear(),
       userId: null,
       tokenExpiration: null,
     };
