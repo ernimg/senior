@@ -23,7 +23,16 @@ font-family: 'Roboto', sans-serif; */
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Percentage of user's browser font-size setting */
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
 body {
   font-family: "Roboto", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
 }
 </style>

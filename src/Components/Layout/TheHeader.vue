@@ -1,17 +1,36 @@
 <template>
-  <header>
-    <nav>
-      <img src="" alt="logo" />
-      <ul>
-        <router-link to="/">Strona głown</router-link>
-        <router-link to="/news">Aktualności</router-link>
-        <router-link to="/eventCalendar">Terminy wydarzeń</router-link>
-        <router-link to="/gallery">Galeria zdjęć</router-link>
-        <router-link to="/contact">Kontakt</router-link>
-        <router-link v-if="!isAuth" to="/auth?redirect=addPost"
-          >Logowanie</router-link
-        >
-        <button @click="logOut" v-else>Wyloguj</button>
+  <header class="header">
+    <router-link class="logo" to="/"><img src="" alt="logo" /></router-link>
+    <nav class="main-nav">
+      <ul class="main-nav-list">
+        <li>
+          <router-link class="main-nav-link" to="/news"
+            >Aktualności</router-link
+          >
+        </li>
+        <li>
+          <router-link class="main-nav-link" to="/eventCalendar"
+            >Terminy wydarzeń</router-link
+          >
+        </li>
+        <li>
+          <router-link class="main-nav-link" to="/gallery"
+            >Galeria zdjęć</router-link
+          >
+        </li>
+        <li>
+          <router-link class="main-nav-link" to="/contact">Kontakt</router-link>
+        </li>
+        <li v-if="!isAuth">
+          <router-link class="main-nav-link nav-cta" to="/auth?redirect=addPost"
+            >Logowanie</router-link
+          >
+        </li>
+        <li v-else>
+          <router-link class="main-nav-link nav-cta" @click="logOut" to="#">
+            Wyloguj</router-link
+          >
+        </li>
       </ul>
     </nav>
   </header>
@@ -40,32 +59,73 @@ export default {
 };
 </script>
 <style scoped>
-header {
-  margin-bottom: 5.62rem;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdf2e9;
+
+  height: 9.6rem;
+  padding: 0 4.8rem;
+  position: relative;
 }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5.62rem;
+.logo {
+  height: 2.2rem;
+}
+/**************************/
+/* NAVIGATION */
+/**************************/
+
+.main-nav-list {
+  list-style: none;
   display: flex;
   align-items: center;
-  background-color: #000;
+  gap: 4.8rem;
 }
-nav img {
-  flex-basis: 30%;
-}
-nav ul {
-  display: flex;
-  justify-content: space-around;
 
-  flex-basis: 70%;
-  gap: 1rem;
-}
-a {
-  color: #fff;
+.main-nav-link:link,
+.main-nav-link:visited {
+  display: inline-block;
   text-decoration: none;
-  padding: 0.25rem;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.8rem;
+  transition: all 0.3s;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+  color: #f19000;
+}
+
+.main-nav-link.nav-cta:link,
+.main-nav-link.nav-cta:visited {
+  padding: 1.2rem 2.4rem;
+  border-radius: 9px;
+  color: #fff;
+  background-color: #e67e22;
+}
+
+.main-nav-link.nav-cta:hover,
+.main-nav-link.nav-cta:active {
+  background-color: #f19000;
+}
+
+/* STICKY NAVIGATION */
+.sticky .header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: rgba(255, 255, 255, 0.97);
+  z-index: 999;
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
+}
+
+.sticky {
+  margin-top: 9.6rem;
 }
 </style>
