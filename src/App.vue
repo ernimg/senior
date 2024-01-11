@@ -1,6 +1,8 @@
 <template>
   <the-header></the-header>
-  <RouterView></RouterView>
+  <main>
+    <RouterView></RouterView>
+  </main>
   <the-footer></the-footer>
 </template>
 
@@ -34,5 +36,8 @@ body {
   line-height: 1;
   font-weight: 400;
   color: #555;
+}
+main {
+  margin-top: 10rem;
 }
 </style>

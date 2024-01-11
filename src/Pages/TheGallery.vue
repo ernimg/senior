@@ -2,7 +2,8 @@
   <div>
     <h2>Galeria zdjęć</h2>
     <button @click="loadGallery">Refresh</button>
-    <div v-if="!isImages">
+    <base-spiner v-if="isLoading"></base-spiner>
+    <div v-else-if="!isImages && !isLoading">
       <h3>Brak treści ...</h3>
       <p>
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
@@ -18,10 +19,11 @@
 </template>
 <script>
 import { useStore } from "vuex";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 export default {
   setup() {
     const store = useStore();
+    const isLoading = ref(false);
     console.log(store);
     const ImagagesItem = computed(() => {
       return store.getters["Galery/getPicturest"];
@@ -29,14 +31,21 @@ export default {
     const isImages = computed(() => {
       return store.getters["Galery/existPicures"];
     });
-    function loadGallery() {
-      store.dispatch("Galery/loadGallery");
+    async function loadGallery() {
+      isLoading.value = true;
+      try {
+        await store.dispatch("Galery/loadGallery");
+      } catch (error) {
+        console.log(error);
+      }
+      isLoading.value = false;
     }
     onMounted(loadGallery);
     return {
       ImagagesItem,
       isImages,
       loadGallery,
+      isLoading,
     };
   },
 };

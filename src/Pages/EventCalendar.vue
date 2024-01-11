@@ -1,7 +1,8 @@
 <template>
   <div>
     <button @click="updateEvents">Refresh</button>
-    <div v-if="!isEvent">
+    <base-spiner v-if="isLoading"></base-spiner>
+    <div v-else-if="!isEvent && !isLoading">
       <h3>Brak treści ...</h3>
       <p>
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
@@ -21,15 +22,17 @@
   </div>
 </template>
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import EventItem from "@/Components/ListItem/EventItem.vue";
+
 export default {
   components: {
     EventItem,
   },
   setup() {
     const store = useStore();
+    const isLoading = ref(false);
     const EventsCalendar = computed(() => {
       return store.getters["Events/getEvents"];
     });
@@ -39,12 +42,18 @@ export default {
     function removeApp(param) {
       store.dispatch("Events/rmAppoitment", param);
     }
-    function updateEvents() {
-      store.dispatch("Events/lodaEvents");
+    async function updateEvents() {
+      isLoading.value = true;
+      try {
+        await store.dispatch("Events/lodaEvents");
+      } catch (error) {
+        console.log(error);
+      }
+      isLoading.value = false;
     }
     onMounted(updateEvents);
 
-    return { EventsCalendar, removeApp, updateEvents, isEvent };
+    return { EventsCalendar, removeApp, updateEvents, isEvent, isLoading };
   },
 };
 </script>

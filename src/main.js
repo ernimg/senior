@@ -3,9 +3,10 @@ import App from "./App.vue";
 import router from "./router.js";
 import store from "./Store/index.js";
 import BaseContainer from "./Components/Ui/BaseContainer.vue";
-
+import BaseSpiner from "./Components/Ui/BaseSpiner.vue";
 const app = createApp(App);
 app.component("base-container", BaseContainer);
+app.component("base-spiner", BaseSpiner);
 app.use(store);
 app.use(router);
 app.mount("#app");

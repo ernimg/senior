@@ -1,6 +1,10 @@
 <template>
   <header class="header">
-    <router-link class="logo" to="/"><img src="" alt="logo" /></router-link>
+    <router-link class="logo" to="/"
+      ><img
+        src="../../Assets/img/324926660_1650716752028103_6854250667136713309_n.jpg"
+        alt="logo"
+    /></router-link>
     <nav class="main-nav">
       <ul class="main-nav-list">
         <li>
@@ -70,7 +74,10 @@ export default {
   position: relative;
 }
 .logo {
-  height: 2.2rem;
+  padding: 2rem 5rem 2rem 0;
+}
+.logo img {
+  width: 15rem;
 }
 /**************************/
 /* NAVIGATION */
@@ -112,7 +119,7 @@ export default {
 }
 
 /* STICKY NAVIGATION */
-.sticky .header {
+.header {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -123,9 +130,5 @@ export default {
   background-color: rgba(255, 255, 255, 0.97);
   z-index: 999;
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
-}
-
-.sticky {
-  margin-top: 9.6rem;
 }
 </style>

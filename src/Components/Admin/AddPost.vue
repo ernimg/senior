@@ -8,6 +8,7 @@
       </button>
       <button @click="choiceOptions('photo')">Zdjęcie <span>+</span></button>
     </nav>
+
     <base-container>
       <form @submit.prevent="submitForm">
         <div
@@ -130,6 +131,7 @@ export default {
     const route = useRouter();
     const activeOption = ref("news");
     const formIsValid = ref(true);
+
     const title = reactive({
       value: "",
       isValid: true,
@@ -235,7 +237,7 @@ export default {
         formIsValid.value = false;
       }
     }
-    function submitForm() {
+    async function submitForm() {
       inputValid();
       if (!formIsValid.value) return;
 
@@ -256,6 +258,7 @@ export default {
           date: date.value,
           email: email.value,
         };
+
         store.dispatch("Events/cerateEvent", message);
         route.replace("/eventCalendar");
       }
@@ -266,6 +269,7 @@ export default {
         };
 
         store.dispatch("Galery/createPicture", message);
+
         route.replace("/gallery");
       }
     }

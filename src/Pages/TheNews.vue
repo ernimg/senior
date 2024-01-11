@@ -4,7 +4,8 @@
     <div class="news__header">
       <h2>Aktualności</h2>
     </div>
-    <div v-if="!isNews">
+    <base-spiner v-if="isLoading"></base-spiner>
+    <div v-else-if="!isNews && !isLoading">
       <h3>Brak treści ...</h3>
       <p>
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
@@ -24,16 +25,18 @@
   </section>
 </template>
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 
 import NewsItem from "../Components/ListItem/NewsItem.vue";
+
 export default {
   components: {
     NewsItem,
   },
   setup() {
     const store = useStore();
+    const isLoading = ref(false);
     const NewsItems = computed(() => {
       return store.getters["News/getNews"];
     });
@@ -45,6 +48,7 @@ export default {
       store.dispatch("News/rmNews", param);
     }
     async function loadNews(refresh = false) {
+      isLoading.value = true;
       try {
         await store.dispatch("News/loadNews", {
           foreceRefresh: refresh,
@@ -52,9 +56,10 @@ export default {
       } catch (error) {
         console.log(error);
       }
+      isLoading.value = false;
     }
     onMounted(loadNews);
-    return { NewsItems, isNews, remove, loadNews };
+    return { NewsItems, isNews, remove, loadNews, isLoading };
   },
 };
 </script>
