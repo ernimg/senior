@@ -19,13 +19,12 @@ const router = createRouter({
     { path: "/gallery", component: TheGallery },
     { path: "/contact", component: TheContact },
     { path: "/auth", component: UserAuth },
-    { path: "/addPost", component: AddPost, meta: { requiresAuth: true } },
+    { path: "/admin", component: AddPost, meta: { requiresAuth: true } },
     { path: "/:notFound(.*)", redirect: "/" },
   ],
 });
 router.beforeEach((to, _, next) => {
   if (to.meta.requiresAuth) {
-    console.log(store);
     store.getters["Auth/isAuthenticated"] ? next() : next("/auth");
   } else {
     next();

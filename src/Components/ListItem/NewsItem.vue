@@ -1,6 +1,6 @@
 <template>
   <base-container>
-    <li>
+    <div class="card">
       <div class="news__header">
         <h3>{{ title }}</h3>
         <span>{{ publishDate }}</span>
@@ -22,7 +22,7 @@
           />
         </svg>
       </button>
-    </li>
+    </div>
   </base-container>
 </template>
 <script>

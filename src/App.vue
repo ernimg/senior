@@ -17,27 +17,27 @@ export default {
 };
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
-/* f
-font-family: 'Roboto', sans-serif; */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&family=Roboto:wght@300;400;700&display=swap");
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+/* @import "Assets/styles/index.scss"; */
+/* 
+font-family: 'DM Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+
+*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 html {
-  /* 10px / 16px = 0.625 = 62.5% */
-  /* Percentage of user's browser font-size setting */
-  font-size: 62.5%;
-  overflow-x: hidden;
+  font-size: 10px;
 }
 body {
   font-family: "Roboto", sans-serif;
-  line-height: 1;
-  font-weight: 400;
-  color: #555;
 }
 main {
-  margin-top: 10rem;
+  margin-top: 6.7rem;
+  overflow-x: hidden;
 }
 </style>

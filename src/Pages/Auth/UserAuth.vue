@@ -39,7 +39,6 @@ export default {
         err.value = error.message || "faild to logIn";
       }
       const queryURL = "/" + route.query.redirect || "addPost";
-      console.log(queryURL);
       router.replace(queryURL);
     }
 
