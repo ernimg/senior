@@ -11,7 +11,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.3"
           stroke="currentColor"
-          class="w-6 h-6"
+          class="hamburger"
         >
           <path
             stroke-linecap="round"
@@ -27,7 +27,7 @@
           viewBox="0 0 24 24"
           strokeWidth="{1.3}"
           stroke="currentColor"
-          className="w-6 h-6"
+          className="hamburger"
         >
           <path
             strokeLinecap="round"
@@ -224,24 +224,26 @@ export default {
   width: 100%;
   padding: 0.8rem 0;
   background-color: #fff;
-  border-bottom: 1px solid #e1e1e1;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
   z-index: 9999;
-
+  @media screen and (min-width: 1030px) {
+    display: none;
+  }
   span {
     display: flex;
+    transition: 2s;
   }
   .mobile_bars,
   .mobile_close {
-    width: 45px;
-    height: 45px;
+    width: 4.5rem;
+    height: 4.5rem;
     padding: 0.5rem;
     align-items: center;
     justify-content: center;
     margin-right: 1.8rem;
-
     border: 1px solid #222222;
 
-    svg {
+    .hamburger {
       stroke: #222222;
     }
   }
@@ -261,6 +263,21 @@ export default {
   z-index: 9999;
   opacity: 0;
   transition: 0.3s all;
+
+  @media screen and (orientation: landscape) {
+    overflow: scroll;
+  }
+  @media screen and (min-width: 1030px) {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 6.7rem;
+    opacity: 1;
+    overflow: hidden;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
+    transition: none;
+  }
 }
 .main_menu_wrapper.active {
   left: 0;
@@ -272,53 +289,84 @@ export default {
   height: 100%;
   margin: 0 auto;
   padding: 2.4rem 1.2rem 1.2rem 1.2rem;
-  position: relative;
+
+  @media screen and (min-width: 1030px) {
+    min-width: 100%;
+    max-height: 7.5rem;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
 
   .social_wrapper {
-    width: 100%;
+    flex-basis: 20%;
     display: flex;
     justify-content: center;
     gap: 2.4rem;
     margin-bottom: 4rem;
-
+    @media screen and (min-width: 1030px) {
+      margin-bottom: 0;
+    }
+    a {
+      @media screen and (min-width: 1030px) {
+        line-height: 6.7rem;
+      }
+    }
     .social_item {
-      width: 35px;
-      height: 35px;
+      width: 3.5rem;
+      height: 3.5rem;
+      @media screen and (min-width: 480px) {
+        width: 4rem;
+        height: 4rem;
+      }
     }
   }
 
   .nav_wrapper {
+    @media screen and (min-width: 1030px) {
+      flex-basis: 80%;
+    }
+
     .main_nav_list {
+      width: 100%;
       display: flex;
       flex-direction: column;
       list-style: none;
       padding-left: 0;
-
+      @media screen and (min-width: 1030px) {
+        flex-direction: row;
+        height: 6.7rem;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 0;
+      }
       .nav_limk {
         border-bottom: 0.5px solid #e1e1e1;
         text-align: center;
+        transition: 0.3s border-color;
+        &:hover {
+          border-color: #e67e22;
+        }
 
         a {
           display: block;
           padding: 0.8rem 0.4rem;
-          font-size: 2rem;
+          font-size: 1.8rem;
           color: #222222;
           text-decoration: none;
           font-family: "DM Sans", sans-serif;
           font-weight: 300;
           text-transform: uppercase;
           letter-spacing: 0.25rem;
+          @media screen and (min-width: 480px) {
+            font-size: 2.4rem;
+          }
+          @media screen and (min-width: 1030px) {
+            font-size: 1.6rem;
+          }
         }
       }
     }
   }
 }
-
-/*
-SPACING SYSTEM (px)
-2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
-
-FONT SIZE SYSTEM (px)
-10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
-*/
 </style>
