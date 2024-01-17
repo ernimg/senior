@@ -226,7 +226,7 @@ export default {
   padding: 0.8rem 0;
   background-color: #fff;
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
+  z-index: 999;
   @media screen and (min-width: 1030px) {
     display: none;
   }
@@ -243,7 +243,7 @@ export default {
     justify-content: center;
     margin-right: 1.8rem;
     border: 1px solid #222222;
-
+    z-index: 9999;
     .hamburger {
       stroke: #222222;
     }
