@@ -1,5 +1,10 @@
 <template>
   <section class="container">
+    <the-heading>
+      <template #localization>{{ path }}</template>
+      <template #default>Aktualnośći</template>
+      <template #description> </template>
+    </the-heading>
     <div class="row">
       <div class="col-12">
         <button class="btn btn-primary mb-3" @click="loadNews(true)">
@@ -34,10 +39,16 @@
 
 <script setup>
 import NewsItem from "@/Components/ListItem/NewsItem.vue";
+import TheHeading from "@/Components/Layout/TheHeading.vue";
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 const store = useStore();
 const isLoading = ref(false);
+const route = useRoute();
+const path = computed(() => {
+  return route.path;
+});
 const NewsItems = computed(() => {
   return store.getters["News/getNews"];
 });

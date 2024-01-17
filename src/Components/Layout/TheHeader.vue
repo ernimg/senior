@@ -193,12 +193,13 @@ export default {
       console.log("auth - " + store.getters["Auth/isAuthenticated"]);
       return store.getters["Auth/isAuthenticated"];
     });
+    function toggleBurgerIcon() {
+      hamburgerMenuIsOpen.value = !hamburgerMenuIsOpen.value;
+    }
     function logOut() {
       store.dispatch("Auth/logOut");
       router.replace("/");
-    }
-    function toggleBurgerIcon() {
-      hamburgerMenuIsOpen.value = !hamburgerMenuIsOpen.value;
+      toggleBurgerIcon();
     }
     return {
       isAuth,
@@ -231,7 +232,7 @@ export default {
   }
   span {
     display: flex;
-    transition: 2s;
+    cursor: pointer;
   }
   .mobile_bars,
   .mobile_close {

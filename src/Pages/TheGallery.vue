@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <h2>Galeria zdjęć</h2>
+  <section>
+    <the-heading>
+      <template #localization>{{ path }}</template>
+      <template #default>Galeria Zdjęć</template>
+      <template #description> </template>
+    </the-heading>
     <button @click="loadGallery">Refresh</button>
     <base-spiner v-if="isLoading"></base-spiner>
     <div v-else-if="!isImages && !isLoading">
@@ -15,16 +19,24 @@
         <img :src="image.url" alt="" srcset="" />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 <script>
 import { useStore } from "vuex";
 import { computed, onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import TheHeading from "@/Components/Layout/TheHeading.vue";
 export default {
+  components: {
+    TheHeading,
+  },
   setup() {
     const store = useStore();
     const isLoading = ref(false);
-    console.log(store);
+    const route = useRoute();
+    const path = computed(() => {
+      return route.path;
+    });
     const ImagagesItem = computed(() => {
       return store.getters["Galery/getPicturest"];
     });
@@ -46,6 +58,7 @@ export default {
       isImages,
       loadGallery,
       isLoading,
+      path,
     };
   },
 };

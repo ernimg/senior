@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <section>
+    <the-heading>
+      <template #localization>{{ path }}</template>
+      <template #default>Terminy Wydarzeń</template>
+      <template #description> </template>
+    </the-heading>
     <button @click="updateEvents">Refresh</button>
     <base-spiner v-if="isLoading"></base-spiner>
     <div v-else-if="!isEvent && !isLoading">
@@ -19,20 +24,26 @@
       :e-phone="event.ePhone"
       @rm-event="removeApp"
     ></event-item>
-  </div>
+  </section>
 </template>
 <script>
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 import EventItem from "@/Components/ListItem/EventItem.vue";
-
+import TheHeading from "@/Components/Layout/TheHeading.vue";
 export default {
   components: {
     EventItem,
+    TheHeading,
   },
   setup() {
     const store = useStore();
     const isLoading = ref(false);
+    const route = useRoute();
+    const path = computed(() => {
+      return route.path;
+    });
     const EventsCalendar = computed(() => {
       return store.getters["Events/getEvents"];
     });
@@ -53,7 +64,14 @@ export default {
     }
     onMounted(updateEvents);
 
-    return { EventsCalendar, removeApp, updateEvents, isEvent, isLoading };
+    return {
+      EventsCalendar,
+      removeApp,
+      updateEvents,
+      isEvent,
+      isLoading,
+      path,
+    };
   },
 };
 </script>

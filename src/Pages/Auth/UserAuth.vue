@@ -1,5 +1,14 @@
 <template>
-  <h2>Strona Logowania</h2>
+  <the-heading>
+    <template #localization>{{ path }}</template>
+    <template #default>Panel Logowania</template>
+    <template #description>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+      voluptatem dolorum quaerat eius, nostrum amet mollitia architecto nobis
+      perferendis non blanditiis quos quia. Modi, molestiae doloremque. Pariatur
+      quasi dolorum possimus.
+    </template>
+  </the-heading>
   <form @submit.prevent="logIn">
     <base-container>
       <div class="form-control">
@@ -15,10 +24,14 @@
   </form>
 </template>
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
+import TheHeading from "@/Components/Layout/TheHeading.vue";
 export default {
+  components: {
+    TheHeading,
+  },
   setup() {
     const router = useRouter();
     const route = useRoute();
@@ -27,7 +40,9 @@ export default {
     const password = ref("");
     const isLogged = ref(false);
     const err = ref("");
-
+    const path = computed(() => {
+      return route.path;
+    });
     async function logIn() {
       const credential = {
         email: email.value,
@@ -42,7 +57,7 @@ export default {
       router.replace(queryURL);
     }
 
-    return { email, password, isLogged, logIn };
+    return { email, password, isLogged, logIn, path };
   },
 };
 </script>
