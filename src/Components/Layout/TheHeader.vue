@@ -5,35 +5,32 @@
         v-if="!hamburgerMenuIsOpen"
         @click="toggleBurgerIcon"
         class="mobile_bars"
-        ><svg
+      >
+        <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.3"
-          stroke="currentColor"
-          class="hamburger"
+          x="0px"
+          y="0px"
+          width="100"
+          height="100"
+          viewBox="0 0 50 50"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 9h16.5m-16.5 6.75h16.5"
-          />
+            d="M 0 9 L 0 11 L 50 11 L 50 9 Z M 0 24 L 0 26 L 50 26 L 50 24 Z M 0 39 L 0 41 L 50 41 L 50 39 Z"
+          ></path>
         </svg>
       </span>
       <span v-else @click="toggleBurgerIcon" class="mobile_close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="{1.3}"
-          stroke="currentColor"
-          className="hamburger"
+          x="0px"
+          y="0px"
+          width="100"
+          height="100"
+          viewBox="0 0 50 50"
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
+            d="M 0 9 L 0 11 L 50 11 L 50 9 Z M 0 24 L 0 26 L 50 26 L 50 24 Z M 0 39 L 0 41 L 50 41 L 50 39 Z"
+          ></path>
         </svg>
       </span>
     </div>
@@ -219,10 +216,9 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-
+  right: 0;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
   padding: 0.8rem 0;
   background-color: #fff;
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
