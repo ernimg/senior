@@ -41,6 +41,7 @@ html {
 }
 body {
   font-family: "Roboto", sans-serif;
+  -webkit-overflow-scrolling: touch;
 }
 main {
   margin-top: 6.7rem;
