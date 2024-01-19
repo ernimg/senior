@@ -5,7 +5,7 @@
       <template #default>Galeria Zdjęć</template>
       <template #description> </template>
     </the-heading>
-    <button @click="loadGallery">Refresh</button>
+    <button class="btn btn-primary mb-3" @click="loadGallery">Refresh</button>
     <base-spiner v-if="isLoading"></base-spiner>
     <div v-else-if="!isImages && !isLoading">
       <h3>Brak treści ...</h3>
@@ -13,7 +13,7 @@
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
       </p>
     </div>
-    <div class="row" v-else>
+    <div class="row text-center" v-else>
       <galery-items
         v-for="imgae in imagagesItem"
         :key="imgae.id"

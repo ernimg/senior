@@ -1,5 +1,6 @@
 <template>
-  <div class="col col-xs-12 col-sm-6 col-md- col-xl-3 image_wrapp">
+  <div class="item gts col-lg-3 col-md-4 col-6 col-sm image_wrapp">
+    <h3>{{ title }}</h3>
     <img :src="url" :alt="title" />
   </div>
 </template>
