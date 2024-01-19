@@ -1,5 +1,5 @@
 <template>
-  <div class="item gts col-lg-3 col-md-4 col-6 col-sm image_wrapp">
+  <div class="item gts col-12 col-md-6 col-lg-4 image_wrapp">
     <h3>{{ title }}</h3>
     <img :src="url" :alt="title" />
   </div>
@@ -12,7 +12,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .image_wrapp {
-  margin: 1rem;
   overflow: hidden;
   max-height: 40rem;
   img {
