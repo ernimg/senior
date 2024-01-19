@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container">
     <the-heading>
       <template #localization>{{ path }}</template>
       <template #default>Galeria Zdjęć</template>
@@ -13,11 +13,15 @@
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
       </p>
     </div>
-    <div v-else>
-      <div v-for="image in ImagagesItem" :key="image.id">
-        {{ image.title }}
-        <img :src="image.url" alt="" srcset="" />
-      </div>
+    <div class="row" v-else>
+      <galery-items
+        v-for="imgae in imagagesItem"
+        :key="imgae.id"
+        :id="imgae.id"
+        :url="imgae.url"
+        :title="imgae.title"
+      >
+      </galery-items>
     </div>
   </section>
 </template>
@@ -26,9 +30,11 @@ import { useStore } from "vuex";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
+import GaleryItems from "@/Components/ListItem/GaleryItems.vue";
 export default {
   components: {
     TheHeading,
+    GaleryItems,
   },
   setup() {
     const store = useStore();
@@ -37,7 +43,7 @@ export default {
     const path = computed(() => {
       return route.path;
     });
-    const ImagagesItem = computed(() => {
+    const imagagesItem = computed(() => {
       return store.getters["Galery/getPicturest"];
     });
     const isImages = computed(() => {
@@ -54,7 +60,7 @@ export default {
     }
     onMounted(loadGallery);
     return {
-      ImagagesItem,
+      imagagesItem,
       isImages,
       loadGallery,
       isLoading,
