@@ -13,15 +13,15 @@
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
       </p>
     </div>
-    <div class="row text-center" v-else>
-      <galery-items
+    <div class="row text-center justify-content-around" v-else>
+      <gallery-items
         v-for="imgae in imagagesItem"
         :key="imgae.id"
         :id="imgae.id"
         :url="imgae.url"
         :title="imgae.title"
       >
-      </galery-items>
+      </gallery-items>
     </div>
   </section>
 </template>
@@ -30,11 +30,11 @@ import { useStore } from "vuex";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
-import GaleryItems from "@/Components/ListItem/GaleryItems.vue";
+import GalleryItems from "@/Components/ListItem/GalleryItems.vue";
 export default {
   components: {
     TheHeading,
-    GaleryItems,
+    GalleryItems,
   },
   setup() {
     const store = useStore();
