@@ -48,7 +48,6 @@ export default {
   },
   async loadGallery(context) {
     const images = [];
-    console.log(images);
     await fetch(`https://senior-38e13-default-rtdb.firebaseio.com/gallery.json`)
       .then((response) => response.json())
       .then((data) => {
