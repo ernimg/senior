@@ -27,6 +27,7 @@ export default {
   overflow: hidden;
   height: 30.1rem;
   width: 30.1rem;
+  margin: 1.2rem auto;
   border: none;
   background-repeat: no-repeat;
   background-position: center;
