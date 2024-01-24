@@ -1,22 +1,20 @@
 <template>
-  <router-link
+  <button
+    @click="selectImg(id)"
     class="item gts col-12 col-md-6 col-lg-4 image_wrapp"
     :style="{ backgroundImage: 'url(' + url + ')' }"
-    :to="imgId"
-  ></router-link>
+  ></button>
 </template>
 <script>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
 export default {
   props: ["id", "url", "title"],
-  setup(props) {
-    const route = useRoute();
-    const imgId = computed(() => {
-      return route.path + "/" + props.id;
-    });
+  emit: ["selectImg"],
+  setup(_, contex) {
+    function selectImg(val) {
+      contex.emit("selectImg", val);
+    }
     return {
-      imgId,
+      selectImg,
     };
   },
 };

@@ -20,9 +20,16 @@
         :id="imgae.id"
         :url="imgae.url"
         :title="imgae.title"
+        @selectImg="setSelectedImg"
       >
       </gallery-items>
     </div>
+    <gallery-details
+      v-if="selectedImage"
+      :img-id="selectedImage"
+      :image-collection="imagagesItem"
+      @close="closeGalleryDialog"
+    ></gallery-details>
   </section>
 </template>
 <script>
@@ -31,15 +38,19 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
 import GalleryItems from "@/Components/ListItem/GalleryItems.vue";
+import GalleryDetails from "@/Components/GalleryDetails.vue";
 export default {
   components: {
     TheHeading,
     GalleryItems,
+    GalleryDetails,
   },
   setup() {
     const store = useStore();
     const isLoading = ref(false);
     const route = useRoute();
+    const selectedImage = ref("");
+
     const path = computed(() => {
       return route.path;
     });
@@ -58,6 +69,12 @@ export default {
       }
       isLoading.value = false;
     }
+    function setSelectedImg(val) {
+      selectedImage.value = val;
+    }
+    function closeGalleryDialog(val) {
+      val === "close" ? (selectedImage.value = "") : null;
+    }
     onMounted(loadGallery);
     return {
       imagagesItem,
@@ -65,6 +82,9 @@ export default {
       loadGallery,
       isLoading,
       path,
+      setSelectedImg,
+      selectedImage,
+      closeGalleryDialog,
     };
   },
 };

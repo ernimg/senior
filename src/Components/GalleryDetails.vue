@@ -1,6 +1,6 @@
 <template>
-  <section class="gallery">
-    <div class="gallery_container">
+  <dialog class="dialog" open>
+    <div class="dialog_container">
       <div class="carousel">
         <picture>
           <img :src="loadImg" alt="image" />
@@ -40,49 +40,64 @@
           </svg>
         </button>
       </div>
+      <button @click="closeGallery">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      </button>
     </div>
-  </section>
+  </dialog>
 </template>
 <script>
 import { ref, computed, onMounted } from "vue";
-import { useStore } from "vuex";
 export default {
-  props: ["imgId"],
-  setup(props) {
-    const store = useStore();
+  props: ["imgId", "imageCollection"],
+  emit: ["closeGallery"],
+  setup(props, context) {
     let imgIndex = ref(null);
-
     const loadImg = computed(() => {
-      // fingIndex();
       let url;
-      for (const x in store.getters["Galery/getPicturest"][imgIndex.value]) {
+      const gallery = props.imageCollection;
+      for (const x in gallery[imgIndex.value]) {
         if (x === "url") {
-          url = store.getters["Galery/getPicturest"][imgIndex.value][x];
+          url = gallery[imgIndex.value][x];
         }
       }
       return url;
     });
     function findIndex() {
-      for (let key in store.getters["Galery/getPicturest"]) {
-        if (store.getters["Galery/getPicturest"][key].id === props.imgId)
-          imgIndex.value = parseInt(key);
+      const gallery = props.imageCollection;
+      for (let key in gallery) {
+        if (gallery[key].id === props.imgId) imgIndex.value = parseInt(key);
       }
     }
 
     function hangeIndex(val) {
-      const lengthImagestore = Object.keys(
-        store.getters["Galery/getPicturest"]
-      ).length;
+      const lengthImagestore = Object.keys(props.imageCollection).length;
+
       if (imgIndex.value < lengthImagestore - 1) {
         val === "incement" ? (imgIndex.value += 1) : null;
       }
       if (imgIndex.value != 0) {
         val === "decrement" ? (imgIndex.value -= 1) : null;
       }
-      console.log(imgIndex.value);
+    }
+    function closeGallery() {
+      context.emit("close", "close");
     }
     onMounted(findIndex);
-    return { imgIndex, findIndex, loadImg, hangeIndex };
+    return { imgIndex, findIndex, loadImg, hangeIndex, closeGallery };
   },
 };
 </script>
