@@ -277,7 +277,7 @@ export default {
   font-family: "DM Sans", sans-serif;
 
   &.active {
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     padding: 1.2rem 0;
     display: flex;
@@ -322,10 +322,8 @@ export default {
           a {
             display: block;
             padding: 0.8rem 0.2rem;
-            font-size: 2.4rem;
-            @media screen and (min-width: 480px) {
-              font-size: 3rem;
-            }
+            font-size: 3rem;
+
             @media screen and (min-width: 720px) {
               font-size: 3.6rem;
             }
