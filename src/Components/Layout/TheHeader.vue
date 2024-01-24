@@ -324,6 +324,9 @@ export default {
     }
     .nav_wrapper {
       .main_nav_list {
+        @media screen and (orientation: landscape) {
+          min-height: 50rem;
+        }
         .nav_limk {
           text-align: center;
           margin-bottom: 0.8rem;
