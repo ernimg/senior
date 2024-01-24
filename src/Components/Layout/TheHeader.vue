@@ -260,6 +260,15 @@ export default {
     justify-content: center;
     &.active {
       display: flex;
+      animation: togleBurger 0.7s ease;
+      @keyframes togleBurger {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
     }
     svg {
       width: 4.5rem;
