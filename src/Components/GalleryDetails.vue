@@ -1,11 +1,10 @@
 <template>
   <dialog class="dialog" open>
     <div class="dialog_container">
-      <div class="carousel">
-        <picture>
-          <img :src="loadImg" alt="image" />
-        </picture>
-      </div>
+      <picture>
+        <img :src="loadImg" alt="image" />
+      </picture>
+
       <div class="controls">
         <button @click="hangeIndex('decrement')">
           <svg
@@ -102,9 +101,28 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: oklch(0 0 0 / 0.4);
+  backdrop-filter: blur(25px);
+  z-index: 5;
+  &_container {
+    overflow: hidden;
+  }
+}
 button {
   width: 5rem;
   height: 5rem;
   text-align: center;
+  color: #fff;
+  border: none;
+  background-color: transparent;
 }
 </style>

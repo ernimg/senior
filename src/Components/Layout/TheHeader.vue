@@ -164,11 +164,8 @@
               >Kontakt</router-link
             >
           </li>
-          <li class="nav_limk">
-            <router-link
-              v-if="isAuth"
-              @click="toggleBurgerIcon(false)"
-              to="/admin"
+          <li class="nav_limk" v-if="isAuth">
+            <router-link @click="toggleBurgerIcon(false)" to="/admin"
               >Admin Panel</router-link
             >
           </li>
@@ -212,8 +209,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-//Basic style
-
 .header_wrapper {
   overflow: hidden;
   background-color: #ede;
@@ -263,14 +258,13 @@ export default {
 
     align-items: center;
     justify-content: center;
-    border: 1px solid #222222;
     &.active {
       display: flex;
     }
     svg {
       width: 4.5rem;
       height: 4.5rem;
-      stroke: #444;
+      stroke: #222222;
     }
   }
 }
@@ -278,9 +272,10 @@ export default {
 .main_menu_wrapper {
   position: fixed;
   display: none;
-  left: -100%;
+
   background-color: #fff;
   font-family: "DM Sans", sans-serif;
+
   &.active {
     height: 100vh;
     width: 100%;
@@ -288,13 +283,23 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.4rem;
+    gap: 3.6rem;
     z-index: 1;
-
     top: 7.1rem;
-    left: 0;
+
+    animation: show 0.3s ease;
     @media screen and (orientation: landscape) {
       overflow: scroll;
+    }
+    @keyframes show {
+      0% {
+        opacity: 0;
+        left: -100%;
+      }
+      100% {
+        opacity: 1;
+        left: 0;
+      }
     }
     .social_wrapper,
     .nav_wrapper {
@@ -312,6 +317,7 @@ export default {
       .main_nav_list {
         .nav_limk {
           text-align: center;
+          margin-bottom: 0.8rem;
           border-bottom: 0.5px solid #e1e1e1;
           a {
             display: block;

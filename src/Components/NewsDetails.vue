@@ -21,11 +21,7 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 export default {
   props: ["newsId"],
-  // state() {
-  //   return {
-  //     selectedNenws: null,
-  //   };
-  // },
+
   setup(props) {
     const store = useStore();
     const selectedNenws = computed(() => {
