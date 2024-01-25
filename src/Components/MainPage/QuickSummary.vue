@@ -6,10 +6,19 @@
       <template #description> </template>
     </the-heading>
     <div>
-      <button @click="setActiveTab('short-news')">Aktualnie</button>
-      <button @click="setActiveTab('rehablilitation-list')">
+      <base-button
+        mode="basicBtn"
+        :class="{ active: activeTab === 'short-news' }"
+        @click="setActiveTab('short-news')"
+        >Aktualnie</base-button
+      >
+      <base-button
+        mode="basicBtn"
+        :class="{ active: activeTab === 'rehablilitation-list' }"
+        @click="setActiveTab('rehablilitation-list')"
+      >
         Rechabilitacja
-      </button>
+      </base-button>
     </div>
     <component :is="activeTab"> </component>
   </section>
@@ -34,3 +43,4 @@ export default {
   },
 };
 </script>
+<!-- HTML !-->

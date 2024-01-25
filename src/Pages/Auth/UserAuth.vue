@@ -19,7 +19,7 @@
         <label for="password"></label>
         <input type="password" id="password" v-model="password" />
       </div>
-      <button>LogIn</button>
+      <base-button mode="basicBtn">LogIn</base-button>
     </base-container>
   </form>
 </template>

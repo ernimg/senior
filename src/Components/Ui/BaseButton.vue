@@ -26,10 +26,23 @@ export default {
 };
 </script>
 <style coped>
-.rmBtn {
-  background-color: crimson;
-  stroke: #fff;
-  font-size: 1.8rem;
+.basicBtn {
+  background-color: transparent;
+  border: 1px solid #e67e22;
+  color: #e67e22;
+  font-size: 1.4rem;
+  padding: 1.2rem 0.8rem;
+  font-family: "DM Sans", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+  &.active,
+  &:hover {
+    color: #fff;
+    background-color: #e67e22;
+  }
 }
 
 .main-nav-link.nav-cta:link,

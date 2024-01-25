@@ -7,9 +7,9 @@
     </the-heading>
     <div class="row">
       <div class="col-12">
-        <button class="btn btn-primary mb-3" @click="loadNews(true)">
+        <base-button mode="basicBtn" @click="loadNews(true)">
           Refresh
-        </button>
+        </base-button>
         <div class="news__header">
           <h2>Aktualności</h2>
         </div>
