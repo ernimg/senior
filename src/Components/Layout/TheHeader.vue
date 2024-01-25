@@ -145,6 +145,11 @@
       <nav class="nav_wrapper">
         <ul class="main_nav_list">
           <li class="nav_limk">
+            <router-link @click="toggleBurgerIcon(false)" to="/"
+              >Senior <span>+</span></router-link
+            >
+          </li>
+          <li class="nav_limk">
             <router-link @click="toggleBurgerIcon(false)" to="/news"
               >Aktualności</router-link
             >
@@ -297,7 +302,7 @@ export default {
     z-index: 1;
     top: 7.1rem;
 
-    animation: show 0.3s ease;
+    animation: show 0.7s ease;
     @media screen and (orientation: landscape) {
       overflow: scroll;
     }
@@ -326,7 +331,7 @@ export default {
     .nav_wrapper {
       .main_nav_list {
         @media screen and (orientation: landscape) {
-          min-height: 50rem;
+          min-height: 65rem;
         }
         .nav_limk {
           text-align: center;

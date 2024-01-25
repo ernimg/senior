@@ -28,6 +28,7 @@ FONT SIZE SYSTEM (px)
 */
 .post_header_title {
   padding: 1.2rem 0.4rem;
+  background-color: rgb(247, 247, 247);
 
   .path {
     display: flex;
