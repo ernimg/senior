@@ -1,45 +1,15 @@
 <template>
   <dialog class="dialog" open>
-    <div class="dialog_container">
-      <picture>
-        <img :src="loadImg" alt="image" />
+    <div>
+      <picture class="carousel-container">
+        <!-- <img :src="loadImg" alt="image" /> -->
+        <div
+          class="img"
+          :style="{ backgroundImage: 'url(' + loadImg + ')' }"
+        ></div>
       </picture>
 
-      <div class="controls">
-        <button @click="hangeIndex('decrement')">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-            />
-          </svg>
-        </button>
-        <button @click="hangeIndex('incement')">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-            />
-          </svg>
-        </button>
-      </div>
-      <button @click="closeGallery">
+      <button class="close" @click="closeGallery">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -52,6 +22,40 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="controls">
+      <button @click="hangeIndex('decrement')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
+      </button>
+      <button @click="hangeIndex('incement')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
           />
         </svg>
       </button>
@@ -101,6 +105,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$size-width: 400px;
+$size-height: 300px;
+@media screen and (min-width: 720px) {
+  $size-width: 600px;
+  $size-height: 420px;
+}
 .dialog {
   position: fixed;
   top: 0;
@@ -116,6 +126,33 @@ export default {
   &_container {
     overflow: hidden;
   }
+}
+.carousel-container {
+  padding: 0.4rem 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.controls {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #000;
+  padding: 0.8rem 1.2rem;
+  z-index: 1;
+}
+.close {
+  position: fixed;
+  right: 3%;
+  top: 3%;
+}
+.img {
+  width: $size-width;
+  height: $size-height;
+  background-size: cover;
+  background-position: center;
 }
 button {
   width: 5rem;
