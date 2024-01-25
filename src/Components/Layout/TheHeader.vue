@@ -218,7 +218,7 @@ export default {
   overflow: hidden;
   background-color: #ede;
   width: 100vw;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 5;
@@ -241,6 +241,7 @@ export default {
 .mobile_nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   max-height: 7.1rem;
   display: flex;

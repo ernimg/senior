@@ -45,6 +45,7 @@ body {
 }
 main {
   margin-top: 6.7rem;
+  min-height: 100dvh;
 }
 section {
   overflow: hidden;
