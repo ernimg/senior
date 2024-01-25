@@ -250,7 +250,7 @@ export default {
   background-color: #fff;
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1200px) {
     display: none;
     position: unset;
   }
@@ -350,7 +350,7 @@ export default {
       }
     }
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1200px) {
     top: 0;
     left: 0;
     display: flex;
