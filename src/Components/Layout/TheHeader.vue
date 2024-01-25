@@ -215,11 +215,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header_wrapper {
-  position: fixed;
-  top: 0;
-  overflow: hidden;
   background-color: #ede;
   width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   z-index: 5;
 }
 .main_nav_list {
@@ -238,9 +238,10 @@ export default {
 }
 
 .mobile_nav {
-  position: sticky;
   width: 100%;
-  height: 7.1rem;
+  top: 0;
+  position: fixed;
+  max-height: 7.1rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
