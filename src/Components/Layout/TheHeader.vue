@@ -213,9 +213,10 @@ export default {
   overflow: hidden;
   background-color: #ede;
   width: 100vw;
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
 }
 .main_nav_list {
   padding: 0;
