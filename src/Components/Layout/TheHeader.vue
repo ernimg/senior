@@ -217,10 +217,10 @@ export default {
 .header_wrapper {
   overflow: hidden;
   background-color: #ede;
-  width: 100vw;
+  width: 100%;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  left: 0;
   z-index: 5;
 }
 .main_nav_list {
@@ -239,9 +239,6 @@ export default {
 }
 
 .mobile_nav {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   max-height: 7.1rem;
   display: flex;
