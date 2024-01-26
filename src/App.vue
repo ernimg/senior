@@ -1,10 +1,11 @@
 <template>
-  <the-header></the-header>
-
-  <main>
-    <RouterView></RouterView>
-  </main>
-  <the-footer></the-footer>
+  <div id="contetnt">
+    <the-header></the-header>
+    <main>
+      <RouterView></RouterView>
+    </main>
+    <the-footer></the-footer>
+  </div>
 </template>
 
 <script>
@@ -36,6 +37,15 @@ font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+#contetnt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  height: 100dvh;
 }
 html {
   font-size: 10px;
