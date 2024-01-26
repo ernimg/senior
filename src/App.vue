@@ -1,5 +1,6 @@
 <template>
   <the-header></the-header>
+
   <main>
     <RouterView></RouterView>
   </main>

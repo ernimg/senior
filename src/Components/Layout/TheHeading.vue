@@ -67,6 +67,7 @@ FONT SIZE SYSTEM (px)
     text-align: left;
     padding: 0 0.8rem;
     font-size: 1.4rem;
+    line-height: 200%;
     letter-spacing: 0.1rem;
     color: #999999;
     @media screen and (min-width: 767px) {

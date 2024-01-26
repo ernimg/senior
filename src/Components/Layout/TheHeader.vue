@@ -217,10 +217,6 @@ export default {
 .header_wrapper {
   background-color: #ede;
   width: 100%;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 5;
 }
 .main_nav_list {
   padding: 0;
@@ -238,17 +234,17 @@ export default {
 }
 
 .mobile_nav {
-  width: 100%;
-  top: 0;
   position: fixed;
-  max-height: 7.1rem;
+  top: 0;
+  width: 100%;
+  height: 7.1rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0.8rem 1.2rem 0.8rem 0;
   background-color: #fff;
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  z-index: 5;
   @media screen and (min-width: 1200px) {
     display: none;
     position: unset;
@@ -298,7 +294,7 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 3.6rem;
-    z-index: 1;
+    z-index: 5;
     top: 7.1rem;
 
     animation: show 0.7s ease;
@@ -356,7 +352,7 @@ export default {
     width: 100%;
     height: 7.1rem;
     box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
-    z-index: 1;
+    z-index: 5;
 
     .social_wrapper {
       flex-basis: 20%;
