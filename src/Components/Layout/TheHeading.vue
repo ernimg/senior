@@ -19,13 +19,6 @@
 </template>
 
 <style lang="scss" scoped>
-/*
-SPACING SYSTEM (px)
-2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
-
-FONT SIZE SYSTEM (px)
-10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
-*/
 .post_header_title {
   padding: 1.2rem 0.4rem;
   background-color: rgb(247, 247, 247);
@@ -37,7 +30,7 @@ FONT SIZE SYSTEM (px)
     margin-bottom: 1.2rem;
     span,
     span a {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       text-transform: uppercase;
       color: #e67e22;
     }

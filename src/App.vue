@@ -55,8 +55,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 main {
-  margin-top: 6.7rem;
-  min-height: 100dvh;
+  margin-top: 7.1rem;
 }
 section {
   overflow: hidden;
