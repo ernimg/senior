@@ -37,16 +37,11 @@ font-family: 'Roboto', sans-serif;
   padding: 0;
   box-sizing: border-box;
 }
-html,
-body {
-  height: 100%;
-}
 html {
   font-size: 10px;
 }
 body {
   font-family: "Roboto", sans-serif;
-  -webkit-overflow-scrolling: touch;
 }
 main {
   margin-top: 6.7rem;
