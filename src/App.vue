@@ -46,6 +46,7 @@ font-family: 'Roboto', sans-serif;
   bottom: 0;
   height: 100vh;
   height: 100dvh;
+  overflow-y: scroll;
 }
 html {
   font-size: 10px;
