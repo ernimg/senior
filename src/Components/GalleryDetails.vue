@@ -1,31 +1,24 @@
 <template>
   <dialog class="dialog" open>
-    <div>
-      <picture class="carousel-container">
-        <!-- <img :src="loadImg" alt="image" /> -->
-        <div
-          class="img"
-          :style="{ backgroundImage: 'url(' + loadImg + ')' }"
-        ></div>
-      </picture>
+    <div class="img" :style="{ backgroundImage: 'url(' + loadImg + ')' }"></div>
 
-      <button class="close" @click="closeGallery">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-          />
-        </svg>
-      </button>
-    </div>
+    <button class="close" @click="closeGallery">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+      </svg>
+    </button>
+
     <div class="controls">
       <button @click="hangeIndex('decrement')">
         <svg
@@ -107,10 +100,7 @@ export default {
 <style lang="scss" scoped>
 $size-width: 400px;
 $size-height: 300px;
-@media screen and (min-width: 720px) {
-  $size-width: 600px;
-  $size-height: 420px;
-}
+
 .dialog {
   position: fixed;
   top: 0;
@@ -149,17 +139,9 @@ $size-height: 300px;
   top: 3%;
 }
 .img {
-  width: $size-width;
-  height: $size-height;
+  width: 100vw;
+  height: 100vw;
   background-size: cover;
   background-position: center;
-}
-button {
-  width: 5rem;
-  height: 5rem;
-  text-align: center;
-  color: #fff;
-  border: none;
-  background-color: transparent;
 }
 </style>
