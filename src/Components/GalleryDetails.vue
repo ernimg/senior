@@ -139,8 +139,8 @@ $size-height: 300px;
   top: 3%;
 }
 .img {
-  width: 100vw;
-  height: 100vw;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
 }
