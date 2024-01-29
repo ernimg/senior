@@ -1,6 +1,11 @@
 <template>
   <dialog class="dialog" open>
-    <div class="img" :style="{ backgroundImage: 'url(' + loadImg + ')' }"></div>
+    <div class="img" :style="{ backgroundImage: 'url(' + loadImg + ')' }">
+      <div class="img_counter">
+        <span>{{ imgIndex + 1 }}</span
+        ><span>z</span><span>{{ lengthCollection }}</span>
+      </div>
+    </div>
 
     <button class="close" @click="closeGallery">
       <svg
@@ -20,7 +25,7 @@
     </button>
 
     <div class="controls">
-      <button @click="hangeIndex('decrement')">
+      <button :disabled="imgIndex === 0" @click="hangeIndex('decrement')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -36,7 +41,10 @@
           />
         </svg>
       </button>
-      <button @click="hangeIndex('incement')">
+      <button
+        :disabled="lengthCollection - 1 === imgIndex"
+        @click="hangeIndex('incement')"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -62,6 +70,9 @@ export default {
   emit: ["closeGallery"],
   setup(props, context) {
     let imgIndex = ref(null);
+    const lengthCollection = computed(() => {
+      return Object.keys(props.imageCollection).length;
+    });
     const loadImg = computed(() => {
       let url;
       const gallery = props.imageCollection;
@@ -93,7 +104,14 @@ export default {
       context.emit("close", "close");
     }
     onMounted(findIndex);
-    return { imgIndex, findIndex, loadImg, hangeIndex, closeGallery };
+    return {
+      imgIndex,
+      findIndex,
+      loadImg,
+      hangeIndex,
+      closeGallery,
+      lengthCollection,
+    };
   },
 };
 </script>
@@ -153,10 +171,25 @@ button {
   top: 0;
 }
 .img {
+  position: relative;
   width: 100%;
   height: 56.6rem;
   max-width: 108rem;
   background-size: cover;
   background-position: center;
+  &_counter {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20rem;
+    padding: 0.8rem 1.2rem;
+    text-align: center;
+    background: #e67e22;
+    span {
+      margin: 0.4rem;
+      font-size: 1.4rem;
+    }
+  }
 }
 </style>
