@@ -117,30 +117,45 @@ $size-height: 300px;
     overflow: hidden;
   }
 }
-.carousel-container {
-  padding: 0.4rem 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+button {
+  background-color: unset;
+  border: unset;
+  padding: 0.8rem;
+  text-align: center;
+  background: rgba(30, 30, 30, 0.6);
+  cursor: pointer;
+  transition: 0.3s;
+  svg {
+    width: 4rem;
+    height: 4rem;
+    stroke: #ccc;
+  }
+  &:hover {
+    svg {
+      stroke: #fff;
+    }
+  }
 }
+
 .controls {
   position: fixed;
-  bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: #000;
-  padding: 0.8rem 1.2rem;
+  padding: 0.8rem 0.4rem;
   z-index: 1;
 }
 .close {
   position: fixed;
-  right: 3%;
-  top: 3%;
+  right: 0;
+  top: 0;
 }
 .img {
   width: 100%;
-  height: 100%;
+  height: 56.6rem;
+  max-width: 108rem;
   background-size: cover;
   background-position: center;
 }
