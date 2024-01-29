@@ -3,7 +3,7 @@
     <div class="img" :style="{ backgroundImage: 'url(' + loadImg + ')' }">
       <div class="img_counter">
         <span>{{ imgIndex + 1 }}</span
-        ><span>z</span><span>{{ lengthCollection }}</span>
+        ><span>/</span><span>{{ lengthCollection }}</span>
       </div>
     </div>
 
@@ -188,7 +188,8 @@ button {
     background: #e67e22;
     span {
       margin: 0.4rem;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+      font-weight: 700;
     }
   }
 }
