@@ -62,12 +62,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$greenSeaweed: rgb(247, 247, 247);
-$blueQueen: #e67e22;
+$greenSeaweed: #e67e22;
+$blueQueen: crimson;
 
 .formWrapper {
   width: 100%;
-  height: 40rem;
+  height: 35rem;
   position: relative;
 }
 .login {
