@@ -2,7 +2,7 @@
   <button v-if="!link" :class="mode">
     <slot></slot>
   </button>
-  <router-link v-else :to="to" :class="mode"></router-link>
+  <router-link v-else :to="to" :class="mode"> <slot></slot></router-link>
 </template>
 <script>
 export default {
@@ -25,7 +25,7 @@ export default {
   },
 };
 </script>
-<style coped>
+<style lang="scss" coped>
 .basicBtn {
   background-color: transparent;
   border: 1px solid #e67e22;
@@ -44,8 +44,15 @@ export default {
     background-color: #e67e22;
   }
 }
-
-.main-nav-link.nav-cta:link,
+.homeLink {
+  color: #222 !important;
+  transition: 0.3s;
+  &:hover {
+    color: #e67e22 !important;
+    text-decoration: none;
+  }
+}
+/* .main-nav-link.nav-cta:link,
 .main-nav-link.nav-cta:visited {
   padding: 1.2rem 2.4rem;
   border-radius: 9px;
@@ -56,5 +63,5 @@ export default {
 .main-nav-link.nav-cta:hover,
 .main-nav-link.nav-cta:active {
   background-color: #f19000;
-}
+} */
 </style>

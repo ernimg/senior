@@ -9,19 +9,19 @@
       quasi dolorum possimus.
     </template>
   </the-heading>
-  <form @submit.prevent="logIn">
-    <base-container>
-      <div class="form-control">
-        <label for="email"></label>
-        <input type="email" id="email" v-model="email" />
-      </div>
-      <div class="form-control">
-        <label for="password"></label>
-        <input type="password" id="password" v-model="password" />
-      </div>
+  <div class="formWrapper">
+    <form class="login" @submit.prevent="logIn">
+      <input type="email" id="email" placeholder="email" v-model="email" />
+
+      <input
+        type="password"
+        id="password"
+        placeholder="password"
+        v-model="password"
+      />
       <base-button mode="basicBtn">LogIn</base-button>
-    </base-container>
-  </form>
+    </form>
+  </div>
 </template>
 <script>
 import { ref, computed } from "vue";
@@ -61,50 +61,69 @@ export default {
   },
 };
 </script>
-<style scoped>
-.form-control {
-  margin: 0.5rem 0;
-}
+<style lang="scss" scoped>
+$greenSeaweed: rgb(247, 247, 247);
+$blueQueen: #e67e22;
 
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-input[type="checkbox"] + label {
-  font-weight: normal;
-  display: inline;
-  margin: 0 0 0 0.5rem;
-}
-
-input,
-textarea {
-  display: block;
+.formWrapper {
   width: 100%;
-  border: 1px solid #ccc;
-  font: inherit;
+  height: 40rem;
+  position: relative;
 }
+.login {
+  overflow: hidden;
+  background-color: white;
+  padding: 4rem 3rem 3rem 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40rem;
+  transform: translate(-50%, -50%);
+  transition: transform 300ms, box-shadow 300ms;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 60rem;
+    height: 60rem;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    z-index: -1;
+  }
 
-input:focus,
-textarea:focus {
-  background-color: #f0e6fd;
-  outline: none;
-  border-color: #3d008d;
+  &::before {
+    left: 40%;
+    bottom: -130%;
+    background-color: rgba($blueQueen, 0.15);
+    animation: wawes 6s infinite linear;
+  }
+
+  &::after {
+    left: 35%;
+    bottom: -125%;
+    background-color: rgba($greenSeaweed, 0.2);
+    animation: (wawes 7s infinite);
+  }
+
+  > input {
+    display: block;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    background: white;
+    width: 100%;
+    border: 0;
+    padding: 1rem 1rem;
+    margin: 1.5rem -1rem;
+  }
 }
-
-input[type="checkbox"] {
-  display: inline;
-  width: auto;
-  border: none;
-}
-
-input[type="checkbox"]:focus {
-  outline: #3d008d solid 1px;
-}
-
-h3 {
-  margin: 0.5rem 0;
-  font-size: 1rem;
+@keyframes wawes {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

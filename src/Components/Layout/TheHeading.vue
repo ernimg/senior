@@ -3,7 +3,8 @@
     <div class="path">
       <span>
         <!-- <slot></slot> -->
-        <router-link to="Home">Home</router-link>
+        <base-button link mode="homeLink">Home</base-button>
+        <!-- <router-link to="Home">Home</router-link> -->
       </span>
 
       <span><slot name="localization"></slot></span>
