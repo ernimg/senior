@@ -79,6 +79,9 @@ export default {
 }
 .senior {
   max-width: 37rem;
+  @media screen and (min-width: 767px) {
+    max-width: 50rem;
+  }
 }
 h3,
 h4 {
