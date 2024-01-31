@@ -19,7 +19,7 @@
         placeholder="password"
         v-model="password"
       />
-      <base-button mode="basicBtn">LogIn</base-button>
+      <base-button mode="basicBtn">Zaloguj</base-button>
     </form>
   </div>
 </template>
@@ -69,6 +69,7 @@ $blueQueen: crimson;
   width: 100%;
   height: 35rem;
   position: relative;
+  overflow: hidden;
 }
 .login {
   overflow: hidden;
