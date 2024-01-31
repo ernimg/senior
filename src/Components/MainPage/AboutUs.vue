@@ -29,7 +29,9 @@
           </p>
 
           <div class="icon-box">
-            <div class="icon"></div>
+            <div class="icon">
+              <font-awesome-icon icon="fa-solid fa-user-secret" />
+            </div>
             <h4 class="title">Atrakcje jakie zapewniamy</h4>
             <p class="description">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -40,8 +42,10 @@
           </div>
 
           <div class="icon-box">
-            <div class="icon"><i class="bx bx-happy-alt"></i></div>
-            <h4 class="title">Przykdowy bagłówek</h4>
+            <div class="icon">
+              <font-awesome-icon icon="fa-solid fa-user-secret" />
+            </div>
+            <h4 class="title">Nagłówek1</h4>
             <p class="description">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
               inventore reprehenderit assumenda, hic cumque pariatur neque
@@ -51,7 +55,9 @@
           </div>
 
           <div class="icon-box">
-            <div class="icon"><i class="bx bx-user-voice"></i></div>
+            <div class="icon">
+              <font-awesome-icon icon="fa-solid fa-user-secret" />
+            </div>
             <h4 class="title">Nagłówek2</h4>
             <p class="description">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta
@@ -83,12 +89,13 @@ export default {
     max-width: 50rem;
   }
 }
-h3,
-h4 {
-  color: #e67e22;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.2rem;
+.description {
+  text-align: left;
+  font-size: 1.6rem;
+  color: #222;
+  letter-spacing: 0.1rem;
+  line-height: 200%;
+  padding: 0.4rem 0.8rem;
 }
 h3 {
   font-size: 2.4rem;
@@ -96,11 +103,37 @@ h3 {
 h4 {
   font-size: 2rem;
 }
-.description {
-  text-align: left;
-  font-size: 1.4rem;
-  color: #222;
-  letter-spacing: 0.1rem;
-  line-height: 200%;
+.icon-box {
+  display: flex;
+  flex-wrap: wrap;
+
+  .icon {
+    flex-basis: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    line-height: 4rem;
+    text-align: center;
+    margin-right: 0.8rem;
+    color: #e67e22;
+    border: 0.5px solid #444;
+  }
+  .title {
+    flex-basis: 90%;
+    line-height: 4rem;
+    color: #e67e22;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    margin-bottom: 0;
+  }
+  .description {
+    flex-basis: 100%;
+    text-align: left;
+    font-size: 1.4rem;
+    color: #999;
+    letter-spacing: 0.1rem;
+    line-height: 200%;
+    padding: 0.4rem 0.8rem;
+  }
 }
 </style>
