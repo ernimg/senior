@@ -30,7 +30,7 @@
 
           <div class="icon-box">
             <div class="icon">
-              <font-awesome-icon icon="fa-solid fa-user-secret" />
+              <font-awesome-icon icon="fa-solid fa-info" />
             </div>
             <h4 class="title">Atrakcje jakie zapewniamy</h4>
             <p class="description">
@@ -43,7 +43,7 @@
 
           <div class="icon-box">
             <div class="icon">
-              <font-awesome-icon icon="fa-solid fa-user-secret" />
+              <font-awesome-icon icon="fa-solid fa-info" />
             </div>
             <h4 class="title">Nagłówek1</h4>
             <p class="description">
@@ -56,7 +56,7 @@
 
           <div class="icon-box">
             <div class="icon">
-              <font-awesome-icon icon="fa-solid fa-user-secret" />
+              <font-awesome-icon icon="fa-solid fa-info" />
             </div>
             <h4 class="title">Nagłówek2</h4>
             <p class="description">
