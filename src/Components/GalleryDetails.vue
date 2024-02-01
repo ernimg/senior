@@ -167,8 +167,8 @@ button {
 }
 .close {
   position: fixed;
-  right: -9px;
-  top: -6px;
+  right: -5px;
+  top: -4 px;
   background-color: unset;
 }
 .img {
