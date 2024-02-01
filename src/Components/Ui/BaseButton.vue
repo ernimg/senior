@@ -31,10 +31,11 @@ export default {
   border: 1px solid #e67e22;
   color: #e67e22;
   font-size: 1.4rem;
-  padding: 1.2rem 0.8rem;
+  padding: 0.8rem 1.2rem;
   font-family: "DM Sans", sans-serif;
   text-transform: uppercase;
   text-align: center;
+  text-decoration: none;
   letter-spacing: 0.2rem;
   cursor: pointer;
   transition: 0.3s;
@@ -52,16 +53,4 @@ export default {
     text-decoration: none;
   }
 }
-/* .main-nav-link.nav-cta:link,
-.main-nav-link.nav-cta:visited {
-  padding: 1.2rem 2.4rem;
-  border-radius: 9px;
-  color: #fff;
-  background-color: #e67e22;
-}
-
-.main-nav-link.nav-cta:hover,
-.main-nav-link.nav-cta:active {
-  background-color: #f19000;
-} */
 </style>

@@ -5,7 +5,9 @@
       <template #default>Galeria Zdjęć</template>
       <template #description> </template>
     </the-heading>
-    <base-button mode="basicBtn" @click="loadGallery">Refresh</base-button>
+    <base-button mode="basicBtn" @click="loadGallery">
+      <font-awesome-icon icon="fa-solid fa-rotate-right"
+    /></base-button>
     <base-spiner v-if="isLoading"></base-spiner>
     <div v-else-if="!isImages && !isLoading">
       <h3>Brak treści ...</h3>

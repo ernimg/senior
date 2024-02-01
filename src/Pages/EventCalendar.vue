@@ -5,7 +5,10 @@
       <template #default>Terminy Wydarzeń</template>
       <template #description> </template>
     </the-heading>
-    <button @click="updateEvents">Refresh</button>
+    <base-button mode="basicBtn" @click="updateEvents">
+      <font-awesome-icon icon="fa-solid fa-rotate-right"
+    /></base-button>
+
     <base-spiner v-if="isLoading"></base-spiner>
     <div v-else-if="!isEvent && !isLoading">
       <h3>Brak treści ...</h3>

@@ -25,7 +25,7 @@ export default {
   async createNews(context, payload) {
     const news = {
       title: payload.title,
-      date: new Date().toDateString(),
+      date: new Date().toLocaleString(),
       description: payload.description,
       author: payload.author,
       images: [],
@@ -74,7 +74,6 @@ export default {
     context.commit("addNews", news);
   },
   async loadNews(context, payload) {
-    console.log(payload.foreceRefresh, !getters.shouldUpdate);
     if (payload.foreceRefresh && !getters.shouldUpdate) return;
 
     const news = [];
@@ -86,11 +85,10 @@ export default {
             id: key,
             title: data[key].title,
             description: data[key].description,
-            publishDate: data[key].publishDate,
+            publishDate: data[key].date,
             author: data[key].author,
             images: data[key].images,
           };
-
           news.push(item);
         }
       })

@@ -8,11 +8,8 @@
     <div class="row">
       <div class="col-12">
         <base-button mode="basicBtn" @click="loadNews(true)">
-          Refresh
+          <font-awesome-icon icon="fa-solid fa-rotate-right" />
         </base-button>
-        <div class="news__header">
-          <h2>Aktualności</h2>
-        </div>
         <base-spiner v-if="isLoading"></base-spiner>
         <div v-else-if="!isNews && !isLoading">
           <h3>Brak treści ...</h3>
@@ -29,6 +26,7 @@
             :title="news.title"
             :description="news.description"
             :publish-date="news.publishDate"
+            :img="news.images[0]"
             @rm-wews="remove"
           ></news-item>
         </ul>
@@ -50,6 +48,7 @@ const path = computed(() => {
   return route.path;
 });
 const NewsItems = computed(() => {
+  console.log(store.getters["News/getNews"]);
   return store.getters["News/getNews"];
 });
 
@@ -74,3 +73,11 @@ async function loadNews(refresh = false) {
 }
 onMounted(loadNews);
 </script>
+<style lang="scss">
+.news__list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+</style>
