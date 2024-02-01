@@ -113,7 +113,7 @@ h4 {
     font-size: 2rem;
     line-height: 4rem;
     text-align: center;
-    margin-right: 0.8rem;
+    margin: 0.8rem;
     color: #e67e22;
     border: 0.5px solid #444;
   }
