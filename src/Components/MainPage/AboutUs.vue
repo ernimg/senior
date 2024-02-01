@@ -130,7 +130,7 @@ h4 {
     flex-basis: 100%;
     text-align: left;
     font-size: 1.4rem;
-    color: #999;
+    color: #555;
     letter-spacing: 0.1rem;
     line-height: 200%;
     padding: 0.4rem 0.8rem;
