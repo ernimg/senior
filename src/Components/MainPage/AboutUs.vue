@@ -120,7 +120,7 @@ h4 {
   }
   .title {
     flex-basis: 90%;
-    line-height: 4rem;
+    line-height: 5.7rem;
     color: #e67e22;
     font-family: "DM Sans", sans-serif;
     font-weight: 700;
