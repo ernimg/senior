@@ -111,11 +111,12 @@ h4 {
     flex-basis: 4rem;
     height: 4rem;
     font-size: 2rem;
-    line-height: 4rem;
+    line-height: 3.2rem;
     text-align: center;
     margin: 0.8rem;
+    padding: 0.4rem;
     color: #e67e22;
-    border: 0.5px solid #444;
+    border: 1px solid #444;
   }
   .title {
     flex-basis: 90%;
