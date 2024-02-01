@@ -48,16 +48,24 @@ export default {
 <style lang="scss" scoped>
 .card {
   position: relative;
-  flex-basis: 45%;
+  flex-basis: 90%;
   text-align: center;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 4.2rem;
+  @media screen and (min-width: 640px) {
+    flex-basis: 48%;
+  }
+  @media screen and (min-width: 1024px) {
+    flex-basis: 31%;
+  }
 }
 .news__header {
   width: 100%;
   &-img {
     max-height: 25rem;
     width: 100%;
+    border-bottom: 1px solid #6f916f;
   }
   &-title {
     text-transform: uppercase;
@@ -79,7 +87,7 @@ export default {
   position: absolute;
   top: -3.7rem;
   right: 0;
-  background-color: crimson;
+  background-color: #6f916f;
   color: #fff;
   font-size: 1.4rem;
   text-align: center;
