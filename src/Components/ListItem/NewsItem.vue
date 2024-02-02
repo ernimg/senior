@@ -17,7 +17,7 @@
     <button class="rm_btn" v-if="isAuth" @click="removeNews(id)">
       <font-awesome-icon icon="fa-solid fa-trash" />
     </button>
-    <span class="date">{{ publishDate }}</span>
+    <span class="date"> Data publikacji {{ publishDate }}</span>
   </div>
 </template>
 <script>
@@ -85,7 +85,7 @@ export default {
     &:after {
       content: "";
       position: absolute;
-      bottom: 0;
+      bottom: -1rem;
       left: 0;
       width: 100%;
       height: 3rem;
@@ -140,6 +140,7 @@ export default {
   transition: 0.3s;
   &:hover {
     color: #fff;
+    background: crimson;
   }
 }
 </style>
