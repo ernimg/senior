@@ -14,7 +14,7 @@
       quos provident! Dolor dolorum provident porro. Qui maiores a unde debitis
       esse?
     </p>
-    <base-button link mode="basicBtn" :to="newsIdUrl"
+    <base-button link mode="basicBtn" :to="newsIdUrl" class="showMore"
       >Zobacz więcej</base-button
     >
     <button v-if="isAuth" @click="removeNews(id)">
@@ -52,25 +52,33 @@ export default {
   text-align: center;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 4.2rem;
+  transition: 0.3s;
+  margin-bottom: 4.8rem;
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
   @media screen and (min-width: 640px) {
     flex-basis: 48%;
   }
   @media screen and (min-width: 1024px) {
     flex-basis: 31%;
   }
+  @media screen and (min-width: 1200px) {
+    flex-basis: 23%;
+  }
 }
 .news__header {
   width: 100%;
   &-img {
-    max-height: 25rem;
+    height: 25rem;
     width: 100%;
     border-bottom: 1px solid #6f916f;
   }
   &-title {
     text-transform: uppercase;
     padding: 1.8rem 0.4rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
     letter-spacing: 0.2rem;
     color: #222;
   }
@@ -82,6 +90,8 @@ export default {
   line-height: 200%;
   letter-spacing: 0.1rem;
   color: #555;
+  &::before {
+  }
 }
 .date {
   position: absolute;
@@ -92,5 +102,10 @@ export default {
   font-size: 1.4rem;
   text-align: center;
   padding: 0.8rem 0.4rem;
+}
+.showMore {
+  border: unset;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
 }
 </style>
