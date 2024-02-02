@@ -17,7 +17,7 @@
     <base-button link mode="basicBtn" :to="newsIdUrl" class="showMore"
       >Zobacz więcej</base-button
     >
-    <button class="rm_btn" v-if="!isAuth" @click="removeNews(id)">
+    <button class="rm_btn" v-if="isAuth" @click="removeNews(id)">
       <font-awesome-icon icon="fa-solid fa-trash" />
     </button>
     <span class="date">{{ publishDate }}</span>
