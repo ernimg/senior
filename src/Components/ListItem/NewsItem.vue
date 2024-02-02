@@ -9,10 +9,7 @@
       <h3 class="news__header-title">{{ title }}</h3>
     </div>
     <p class="description">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio distinctio
-      quidem possimus laudantium architecto. Hic numquam necessitatibus possimus
-      quos provident! Dolor dolorum provident porro. Qui maiores a unde debitis
-      esse?
+      {{ description }}
     </p>
     <base-button link mode="basicBtn" :to="newsIdUrl" class="showMore"
       >Zobacz więcej</base-button
@@ -28,7 +25,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 export default {
-  props: ["id", "title", "publishDate", "img"],
+  props: ["id", "title", "publishDate", "img", "description"],
   setup(props, context) {
     const route = useRoute();
     const store = useStore();
@@ -49,6 +46,7 @@ export default {
 .card {
   position: relative;
   flex-basis: 90%;
+  max-height: 60rem;
   text-align: center;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -76,20 +74,38 @@ export default {
     border-bottom: 1px solid #6f916f;
   }
   &-title {
+    position: relative;
     text-transform: uppercase;
+    height: 8rem;
     padding: 1.8rem 0.4rem;
     font-size: 2rem;
     letter-spacing: 0.2rem;
     color: #222;
+    overflow: hidden;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3rem;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 1) 100%
+      );
+    }
   }
 }
 .description {
   font-size: 1.2rem;
   padding: 0.8rem 0.4rem;
+  max-height: 20rem;
   text-align: left;
   line-height: 200%;
   letter-spacing: 0.1rem;
   color: #555;
+  overflow: hidden;
   &::before {
   }
 }
@@ -104,6 +120,8 @@ export default {
   padding: 0.8rem 0.4rem;
 }
 .showMore {
+  position: relative;
+  bottom: 0;
   border: unset;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
