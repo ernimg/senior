@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section>
     <the-heading>
       <template #localization>{{ path }}</template>
       <template #default>Aktualnośći</template>
