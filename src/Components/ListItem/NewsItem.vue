@@ -17,7 +17,7 @@
     <base-button link mode="basicBtn" :to="newsIdUrl" class="showMore"
       >Zobacz więcej</base-button
     >
-    <button v-if="isAuth" @click="removeNews(id)">
+    <button class="rm_btn" v-if="!isAuth" @click="removeNews(id)">
       <font-awesome-icon icon="fa-solid fa-trash" />
     </button>
     <span class="date">{{ publishDate }}</span>
@@ -107,5 +107,21 @@ export default {
   border: unset;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
+}
+.rm_btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4.5rem;
+  font-size: 1.6rem;
+  text-align: center;
+  background: rgba(30, 30, 30, 0.6);
+  color: #ccc;
+  border: unset;
+  transition: 0.3s;
+  &:hover {
+    color: #fff;
+  }
 }
 </style>
