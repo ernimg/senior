@@ -53,7 +53,7 @@ export default {
   transition: 0.3s;
   margin-bottom: 4.8rem;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.02);
     z-index: 1;
   }
   @media screen and (min-width: 640px) {
@@ -76,6 +76,9 @@ export default {
   &-title {
     position: relative;
     text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 8rem;
     padding: 1.8rem 0.4rem;
     font-size: 2rem;
@@ -100,14 +103,12 @@ export default {
 .description {
   font-size: 1.2rem;
   padding: 0.8rem 0.4rem;
-  max-height: 20rem;
+  height: 23rem;
   text-align: left;
   line-height: 200%;
   letter-spacing: 0.1rem;
   color: #555;
   overflow: hidden;
-  &::before {
-  }
 }
 .date {
   position: absolute;

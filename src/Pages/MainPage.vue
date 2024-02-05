@@ -9,6 +9,7 @@
 import AboutUs from "@/Components/MainPage/AboutUs.vue";
 import QuickSummary from "@/Components/MainPage/QuickSummary.vue";
 import TheCreate from "@/Components/MainPage/TheCreate.vue";
+
 export default {
   components: {
     AboutUs,
