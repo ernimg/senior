@@ -33,6 +33,7 @@
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
+import { calendarStore } from "@/Store/calerndar";
 import EventItem from "@/Components/ListItem/EventItem.vue";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
 export default {
@@ -42,16 +43,19 @@ export default {
   },
   setup() {
     const store = useStore();
+    const calendarS = calendarStore();
+
     const isLoading = ref(false);
     const route = useRoute();
     const path = computed(() => {
       return route.path;
     });
+
     const EventsCalendar = computed(() => {
-      return store.getters["Events/getEvents"];
+      return calendarS.getEvents;
     });
     const isEvent = computed(() => {
-      return store.getters["Events/isEvents"];
+      return !!calendarS.isEvents;
     });
     function removeApp(param) {
       store.dispatch("Events/rmAppoitment", param);
@@ -59,7 +63,7 @@ export default {
     async function updateEvents() {
       isLoading.value = true;
       try {
-        await store.dispatch("Events/lodaEvents");
+        await calendarS.lodaEvents();
       } catch (error) {
         console.log(error);
       }
@@ -74,7 +78,9 @@ export default {
       isEvent,
       isLoading,
       path,
+      calendarS,
     };
   },
 };
 </script>
+@/Store/callerndar@/Store/calerndar
