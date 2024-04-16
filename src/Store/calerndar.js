@@ -34,6 +34,30 @@ export const calendarStore = defineStore("calendar", {
 
       this.events = newList;
     },
+    async cerateEvent(payload) {
+      const authStore = userAuthStore();
+      const event = {
+        eTitle: payload.title,
+        ePhone: payload.phone,
+        eDate: payload.date,
+        eMail: payload.email,
+      };
+      event.id = "id" + Math.random().toString(15).slice(2);
+      const token = authStore.getToken;
+      const response = await fetch(
+        `https://senior-38e13-default-rtdb.firebaseio.com/events/${event.id}.json?auth=` +
+          token,
+        {
+          method: "PUT",
+          body: JSON.stringify(event),
+        }
+      );
+
+      if ((await response).status != 200) {
+        console.log(response);
+      }
+      this.events.push(event);
+    },
 
     async lodaEvents() {
       const response = await fetch(

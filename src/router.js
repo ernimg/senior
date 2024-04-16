@@ -10,7 +10,6 @@ import AddPost from "./Components/Admin/AddPost.vue";
 import { userAuthStore } from "@/Store/auth";
 // import GalleryDetails from "./Components/GalleryDetails.vue";
 
-const authStore = userAuthStore;
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -28,7 +27,9 @@ const router = createRouter({
   ],
 });
 router.beforeEach((to, _, next) => {
+  const authStore = userAuthStore();
   if (to.meta.requiresAuth) {
+    console.log("wyni " + authStore.isAuthenticated);
     authStore.isAuthenticated ? next() : next({ path: "/auth" });
   } else {
     next();

@@ -35,12 +35,12 @@
   </section>
 </template>
 <script>
-import { useStore } from "vuex";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
 import GalleryItems from "@/Components/ListItem/GalleryItems.vue";
 import GalleryDetails from "@/Components/GalleryDetails.vue";
+import { useGalleryStore } from "@/Store/gallery";
 export default {
   components: {
     TheHeading,
@@ -48,7 +48,7 @@ export default {
     GalleryDetails,
   },
   setup() {
-    const store = useStore();
+    const galleryStore = useGalleryStore();
     const isLoading = ref(false);
     const route = useRoute();
     const selectedImage = ref("");
@@ -57,15 +57,15 @@ export default {
       return route.path;
     });
     const imagagesItem = computed(() => {
-      return store.getters["Galery/getPicturest"];
+      return galleryStore.getPicturest;
     });
     const isImages = computed(() => {
-      return store.getters["Galery/existPicures"];
+      return galleryStore.existPicures;
     });
     async function loadGallery() {
       isLoading.value = true;
       try {
-        await store.dispatch("Galery/loadGallery");
+        await galleryStore.loadGallery();
       } catch (error) {
         console.log(error);
       }

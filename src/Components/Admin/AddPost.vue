@@ -123,11 +123,15 @@
 </template>
 <script>
 import { onMounted, reactive, ref } from "vue";
-import { useStore } from "vuex";
+import { useNewsStore } from "@/Store/news";
+import { calendarStore } from "@/Store/calerndar";
+import { useGalleryStore } from "@/Store/gallery";
 import { useRouter } from "vue-router";
 export default {
   setup() {
-    const store = useStore();
+    const newsStore = useNewsStore();
+    const calendarS = calendarStore();
+    const galleryStore = useGalleryStore();
     const route = useRouter();
     const activeOption = ref("news");
     const formIsValid = ref(true);
@@ -248,7 +252,7 @@ export default {
           img: images.value[0],
           author: author.value,
         };
-        store.dispatch("News/createNews", message);
+        newsStore.createNews(message);
         route.replace("/news");
       }
       if (activeOption.value === "events") {
@@ -259,7 +263,7 @@ export default {
           email: email.value,
         };
 
-        store.dispatch("Events/cerateEvent", message);
+        calendarS.cerateEvent(message);
         route.replace("/eventCalendar");
       }
       if (activeOption.value === "photo") {
@@ -268,7 +272,7 @@ export default {
           images: images.value[0],
         };
 
-        store.dispatch("Galery/createPicture", message);
+        galleryStore.createPicture(message);
 
         route.replace("/gallery");
       }

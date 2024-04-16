@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router.js";
-import store from "./Store/index.js";
+
 import { createPinia } from "pinia";
 import BaseContainer from "./Components/Ui/BaseContainer.vue";
 import BaseSpiner from "./Components/Ui/BaseSpiner.vue";
@@ -21,6 +21,6 @@ app.component("base-spiner", BaseSpiner);
 app.component("base-button", BaseButton);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(pinia);
-app.use(store);
+
 app.use(router);
 app.mount("#app");

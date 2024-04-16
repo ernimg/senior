@@ -15,13 +15,12 @@
 <script setup>
 import NewsItem from "../ListItem/NewsItem.vue";
 import { computed } from "vue";
-import { useStore } from "vuex";
-const store = useStore();
+import { useNewsStore } from "@/Store/news";
 
+const newsStore = useNewsStore();
 const NewsItems = computed(() => {
-  console.log(store.getters["News/getNews"]);
-
-  return store.getters["News/getNews"];
+  // newsStore.loadNews();
+  return newsStore.getNews;
 });
 </script>
 <style lang="scss" scoped>
