@@ -186,21 +186,21 @@
 </template>
 <script>
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
+import { userAuthStore } from "@/Store/auth";
 import { useRouter } from "vue-router";
 export default {
   setup() {
-    const store = useStore();
+    const authStore = userAuthStore();
     const router = useRouter();
     const hamburgerMenuIsOpen = ref(false);
     const isAuth = computed(() => {
-      return store.getters["Auth/isAuthenticated"];
+      return authStore.isAuthenticated;
     });
     function toggleBurgerIcon(param) {
       hamburgerMenuIsOpen.value = param === false ? false : true;
     }
     function logOut() {
-      store.dispatch("Auth/logOut");
+      authStore.logOutApp();
       router.replace("/");
       toggleBurgerIcon(false);
     }

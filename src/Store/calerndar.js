@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-
+import { userAuthStore } from "@/Store/auth";
 export const calendarStore = defineStore("calendar", {
   state: () => ({
     events: [],
@@ -13,6 +13,27 @@ export const calendarStore = defineStore("calendar", {
     },
   },
   actions: {
+    async rmAppoitment(payload) {
+      const news = this.events;
+      const newList = news.filter((app) => app.id !== payload);
+      const token = userAuthStore.getToken;
+
+      await fetch(
+        `https://senior-38e13-default-rtdb.firebaseio.com/events/${payload}.json?auth=` +
+          token,
+        {
+          method: "DELETE",
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => console.log(error));
+
+      this.events = newList;
+    },
+
     async lodaEvents() {
       const response = await fetch(
         `https://senior-38e13-default-rtdb.firebaseio.com/events.json`

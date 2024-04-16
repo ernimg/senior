@@ -7,8 +7,10 @@ import EventCalendar from "./Pages/EventCalendar.vue";
 import NewsDetails from "./Components/NewsDetails.vue";
 import UserAuth from "./Pages/Auth/UserAuth.vue";
 import AddPost from "./Components/Admin/AddPost.vue";
+import { userAuthStore } from "@/Store/auth";
 // import GalleryDetails from "./Components/GalleryDetails.vue";
-import store from "./Store/index.js";
+
+const authStore = userAuthStore;
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -27,7 +29,7 @@ const router = createRouter({
 });
 router.beforeEach((to, _, next) => {
   if (to.meta.requiresAuth) {
-    store.getters["Auth/isAuthenticated"] ? next() : next({ path: "/auth" });
+    authStore.isAuthenticated ? next() : next({ path: "/auth" });
   } else {
     next();
   }

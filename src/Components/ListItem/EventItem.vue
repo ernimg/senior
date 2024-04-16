@@ -30,13 +30,13 @@
 </template>
 <script>
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { userAuthStore } from "@/Store/auth";
 export default {
   props: ["id", "eTitle", "eDate", "eMail", "ePhone"],
   setup(_, contex) {
-    const store = useStore();
+    const authStore = userAuthStore();
     const isAuth = computed(() => {
-      return store.getters["Auth/isAuthenticated"];
+      return authStore.isAuthenticated;
     });
     function removeEvent(param) {
       contex.emit("rm-event", param);

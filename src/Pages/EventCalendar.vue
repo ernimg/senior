@@ -31,7 +31,6 @@
 </template>
 <script>
 import { computed, onMounted, ref } from "vue";
-import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { calendarStore } from "@/Store/calerndar";
 import EventItem from "@/Components/ListItem/EventItem.vue";
@@ -42,7 +41,6 @@ export default {
     TheHeading,
   },
   setup() {
-    const store = useStore();
     const calendarS = calendarStore();
 
     const isLoading = ref(false);
@@ -58,7 +56,7 @@ export default {
       return !!calendarS.isEvents;
     });
     function removeApp(param) {
-      store.dispatch("Events/rmAppoitment", param);
+      calendarS.rmAppoitment(param);
     }
     async function updateEvents() {
       isLoading.value = true;

@@ -23,17 +23,17 @@
 <script>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { useStore } from "vuex";
+import { userAuthStore } from "@/Store/auth";
 export default {
   props: ["id", "title", "publishDate", "img", "description"],
   setup(props, context) {
     const route = useRoute();
-    const store = useStore();
+    const authStore = userAuthStore();
     const newsIdUrl = computed(() => {
       return route.path + "/" + props.id;
     });
     const isAuth = computed(() => {
-      return store.getters["Auth/isAuthenticated"];
+      return authStore.isAuthenticated;
     });
     function removeNews(param) {
       context.emit("rm-wews", param);

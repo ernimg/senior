@@ -25,9 +25,9 @@
 </template>
 <script>
 import { ref, computed } from "vue";
-import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
+import { userAuthStore } from "@/Store/auth";
 export default {
   components: {
     TheHeading,
@@ -35,7 +35,7 @@ export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
-    const store = useStore();
+    const authStore = userAuthStore();
     const email = ref("");
     const password = ref("");
     const isLogged = ref(false);
@@ -49,7 +49,7 @@ export default {
         password: password.value,
       };
       try {
-        await store.dispatch("Auth/logInToApp", credential);
+        await authStore.logInToApp(credential);
       } catch (error) {
         err.value = error.message || "faild to logIn";
       }
