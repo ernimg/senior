@@ -14,9 +14,10 @@ export const calendarStore = defineStore("calendar", {
   },
   actions: {
     async rmAppoitment(payload) {
+      const authStore = userAuthStore();
       const news = this.events;
       const newList = news.filter((app) => app.id !== payload);
-      const token = userAuthStore.getToken;
+      const token = authStore.getToken;
 
       await fetch(
         `https://senior-38e13-default-rtdb.firebaseio.com/events/${payload}.json?auth=` +

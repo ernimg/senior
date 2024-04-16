@@ -39,31 +39,32 @@
 import NewsItem from "@/Components/ListItem/NewsItem.vue";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
 import { computed, onMounted, ref } from "vue";
-import { useStore } from "vuex";
+
 import { useRoute } from "vue-router";
-const store = useStore();
+import { useNewsStore } from "@/Store/news";
+
+const newsStore = useNewsStore();
 const isLoading = ref(false);
 const route = useRoute();
 const path = computed(() => {
   return route.path;
 });
 const NewsItems = computed(() => {
-  console.log(store.getters["News/getNews"]);
-  return store.getters["News/getNews"];
+  return newsStore.getNews;
 });
 
 const isNews = computed(() => {
-  return store.getters["News/isNews"];
+  return newsStore.isNews;
 });
 
 const remove = (param) => {
-  store.dispatch("News/rmNews", param);
+  newsStore.rmNews(param);
 };
 
 async function loadNews(refresh = false) {
   isLoading.value = true;
   try {
-    await store.dispatch("News/loadNews", {
+    await newsStore.loadNews({
       foreceRefresh: refresh,
     });
   } catch (error) {
