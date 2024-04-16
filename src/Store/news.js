@@ -33,19 +33,17 @@ export const useNewsStore = defineStore("news", {
       const newList = news.filter((news) => news.id !== payload);
       const token = authStore.getToken;
 
-      await fetch(
-        `https://senior-38e13-default-rtdb.firebaseio.com/posts/${payload}.json?auth=` +
-          token,
-        {
-          method: "DELETE",
-        }
-      )
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.error("Error deleting the file:", error);
-        });
+      try {
+        await fetch(
+          `https://senior-38e13-default-rtdb.firebaseio.com/posts/${payload}.json?auth=${token}`,
+          {
+            method: "DELETE",
+          }
+        );
+        console.log("News deleted successfully");
+      } catch (error) {
+        console.error("Error deleting the news:", error);
+      }
 
       this.news = newList;
     },
@@ -60,71 +58,67 @@ export const useNewsStore = defineStore("news", {
       };
 
       const cloudName = "dz3kblnlk";
+      const timestamp = Math.round(new Date().getTime() / 1000);
 
-      for (const img of payload.img) {
-        const timestamp = Math.round(new Date().getTime() / 1000);
-        const fd = new FormData();
-        fd.append("upload_preset", "ml_default");
-        fd.append("api_key", "235334789777131");
-        fd.append("timestamp", timestamp);
-        fd.append("folder", news.title);
-        fd.append("tags", "xxx");
-        fd.append("file", img);
+      try {
+        for (const img of payload.img) {
+          const fd = new FormData();
+          fd.append("upload_preset", "ml_default");
+          fd.append("api_key", "235334789777131");
+          fd.append("timestamp", timestamp);
+          fd.append("folder", news.title);
+          fd.append("tags", "xxx");
+          fd.append("file", img);
 
-        await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
-          method: "POST",
-          body: fd,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            news.images.push(data.url);
-          })
-          .catch((error) => {
-            console.error("Error uploading the file:", error);
-          });
-      }
+          const response = await fetch(
+            `https://api.cloudinary.com/v1_1/${cloudName}/upload`,
+            {
+              method: "POST",
+              body: fd,
+            }
+          );
 
-      news.id = "id" + Math.random().toString(15).slice(2);
-      const token = authStore.getToken;
-      await fetch(
-        `https://senior-38e13-default-rtdb.firebaseio.com/posts/${news.id}.json?auth=` +
-          token,
-        {
-          method: "PUT",
-          body: JSON.stringify(news),
+          const data = await response.json();
+          news.images.push(data.url);
         }
-      )
-        .then((response) => response.json())
-        .catch((error) => {
-          console.error("Error uploading the file:", error);
-        });
 
-      this.news.push(news);
+        news.id = "id" + Math.random().toString(15).slice(2);
+        const token = authStore.getToken;
+        await fetch(
+          `https://senior-38e13-default-rtdb.firebaseio.com/posts/${news.id}.json?auth=${token}`,
+          {
+            method: "PUT",
+            body: JSON.stringify(news),
+          }
+        );
+        console.log("News created successfully");
+        this.news.push(news);
+      } catch (error) {
+        console.error("Error creating the news:", error);
+      }
     },
     async loadNews(payload) {
       if (payload.foreceRefresh && !this.shouldUpdate) return;
 
-      const news = [];
-      await fetch(`https://senior-38e13-default-rtdb.firebaseio.com/posts.json`)
-        .then((response) => response.json())
-        .then((data) => {
-          for (const key in data) {
-            const item = {
-              id: key,
-              title: data[key].title,
-              description: data[key].description,
-              publishDate: data[key].date,
-              author: data[key].author,
-              images: data[key].images,
-            };
-            news.push(item);
-          }
-        })
-        .catch((error) => {
-          console.error("Error get the news:", error);
-        });
-      this.news = news;
-      this.upDate = new Date().getTime();
+      try {
+        const response = await fetch(
+          `https://senior-38e13-default-rtdb.firebaseio.com/posts.json`
+        );
+        const data = await response.json();
+        const news = Object.keys(data).map((key) => ({
+          id: key,
+          title: data[key].title,
+          description: data[key].description,
+          publishDate: data[key].date,
+          author: data[key].author,
+          images: data[key].images,
+        }));
+        this.news = news;
+        this.upDate = new Date().getTime();
+        console.log("News loaded successfully");
+      } catch (error) {
+        console.error("Error loading the news:", error);
+      }
     },
   },
 });

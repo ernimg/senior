@@ -18,16 +18,15 @@
 </template>
 <script>
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useNewsStore } from "@/Store/news";
+
 export default {
   props: ["newsId"],
 
   setup(props) {
-    const store = useStore();
+    const newsStore = useNewsStore();
     const selectedNenws = computed(() => {
-      return store.getters["News/getNews"].find(
-        (news) => news.id === props.newsId
-      );
+      return newsStore.getNews.find((news) => news.id === props.newsId);
     });
     const printTitle = computed(() => {
       return selectedNenws.value.title;

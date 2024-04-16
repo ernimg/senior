@@ -20,42 +20,34 @@ export const userAuthStore = defineStore("auth", {
   },
   actions: {
     async logInToApp(payload) {
-      const api_key = this.firebase_api_key;
+      const { firebase_api_key } = this;
 
-      await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=` +
-          api_key,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: payload.email,
-            password: payload.password,
-            returnSecureToken: true,
-          }),
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          const auth = {
-            token: data.idToken,
-            userId: data.localId,
-            tokenExpiration: data.expiresIn,
-          };
-
-          if (auth.token) {
-            localStorage.setItem("token", auth.token);
-            localStorage.setItem("userId", auth.userId);
+      try {
+        const response = await fetch(
+          `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebase_api_key}`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              email: payload.email,
+              password: payload.password,
+              returnSecureToken: true,
+            }),
           }
+        );
 
-          this.token = localStorage.getItem("token");
-          this.userId = payload.userId;
-          this.tokenExpiration = payload.tokenExpiration;
-        })
-        .catch((error) => {
-          const err = new Error(error.message || "Auth to failed");
-          throw err;
-        });
+        const data = await response.json();
+
+        if (data.idToken) {
+          localStorage.setItem("token", data.idToken);
+          localStorage.setItem("userId", data.localId);
+          this.token = data.idToken;
+          this.userId = data.localId;
+          this.tokenExpiration = data.expiresIn;
+        }
+      } catch (error) {
+        const err = new Error(error.message || "Auth to failed");
+        throw err;
+      }
     },
     logOutApp() {
       localStorage.clear();
