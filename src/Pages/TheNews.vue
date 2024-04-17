@@ -42,9 +42,8 @@ import { computed, onMounted, ref } from "vue";
 
 import { useRoute } from "vue-router";
 import { useNewsStore } from "@/Store/news";
-
+import useNewsLoader from "@/Components/hooks/loadNews";
 const newsStore = useNewsStore();
-const isLoading = ref(false);
 const route = useRoute();
 const path = computed(() => {
   return route.path;
@@ -60,18 +59,7 @@ const isNews = computed(() => {
 const remove = (param) => {
   newsStore.rmNews(param);
 };
-
-async function loadNews(refresh = false) {
-  isLoading.value = true;
-  try {
-    await newsStore.loadNews({
-      foreceRefresh: refresh,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-  isLoading.value = false;
-}
+const { isLoading, loadNews } = useNewsLoader();
 onMounted(loadNews);
 </script>
 <style lang="scss">
