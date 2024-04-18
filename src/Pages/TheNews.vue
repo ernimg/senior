@@ -69,5 +69,6 @@ onMounted(loadNews);
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-around;
+  padding-left: 0;
 }
 </style>

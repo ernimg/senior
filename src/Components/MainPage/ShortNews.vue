@@ -2,7 +2,7 @@
   <base-spiner v-if="isLoading"></base-spiner>
   <section v-else>
     <h3>Ostatnie wydarzenia</h3>
-    <div class="news_wrapper">
+    <ul class="news__list">
       <news-item
         v-for="news in sortedNews"
         :key="news.id"
@@ -12,7 +12,7 @@
         :publish-date="news.publishDate"
         :img="news.images[0]"
       ></news-item>
-    </div>
+    </ul>
   </section>
 </template>
 <script setup>
@@ -33,9 +33,3 @@ const sortedNews = computed(() => {
 const { isLoading, loadNews } = useNewsLoader();
 onMounted(loadNews);
 </script>
-<style lang="scss" scoped>
-.news_wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-</style>

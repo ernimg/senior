@@ -22,15 +22,16 @@
 </template>
 <script>
 import { computed } from "vue";
-import { useRoute } from "vue-router";
+// import { useRoute } from "vue-router";
 import { userAuthStore } from "@/Store/auth";
 export default {
   props: ["id", "title", "publishDate", "img", "description"],
   setup(props, context) {
-    const route = useRoute();
+    // const route = useRoute();
     const authStore = userAuthStore();
     const newsIdUrl = computed(() => {
-      return route.path + "/" + props.id;
+      // route.path + "/" + props.id
+      return "/news/" + props.id;
     });
     const isAuth = computed(() => {
       return authStore.isAuthenticated;
@@ -84,6 +85,7 @@ export default {
     font-size: 2rem;
     letter-spacing: 0.2rem;
     color: #222;
+
     overflow: hidden;
     &:after {
       content: "";
