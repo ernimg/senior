@@ -38,12 +38,13 @@
 <script setup>
 import NewsItem from "@/Components/ListItem/NewsItem.vue";
 import TheHeading from "@/Components/Layout/TheHeading.vue";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted } from "vue";
 
 import { useRoute } from "vue-router";
 import { useNewsStore } from "@/Store/news";
 import useNewsLoader from "@/Components/hooks/loadNews";
 const newsStore = useNewsStore();
+// const isLoading = ref(false);
 const route = useRoute();
 const path = computed(() => {
   return route.path;

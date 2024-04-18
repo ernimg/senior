@@ -1,10 +1,10 @@
 <template>
   <base-spiner v-if="isLoading"></base-spiner>
-  <div v-else>
+  <section v-else>
     <h3>Ostatnie wydarzenia</h3>
     <div class="news_wrapper">
       <news-item
-        v-for="news in NewsItems"
+        v-for="news in sortedNews"
         :key="news.id"
         :id="news.id"
         :title="news.title"
@@ -13,7 +13,7 @@
         :img="news.images[0]"
       ></news-item>
     </div>
-  </div>
+  </section>
 </template>
 <script setup>
 import NewsItem from "../ListItem/NewsItem.vue";
@@ -21,8 +21,14 @@ import { computed, onMounted } from "vue";
 import { useNewsStore } from "@/Store/news";
 import useNewsLoader from "@/Components/hooks/loadNews";
 const newsStore = useNewsStore();
-const NewsItems = computed(() => {
-  return newsStore.getNews;
+
+const sortedNews = computed(() => {
+  return newsStore.getNews
+    .slice()
+    .sort((a, b) => {
+      return new Date(b.publishDate) - new Date(a.publishDate);
+    })
+    .slice(0, 4);
 });
 const { isLoading, loadNews } = useNewsLoader();
 onMounted(loadNews);
@@ -31,6 +37,5 @@ onMounted(loadNews);
 .news_wrapper {
   display: flex;
   justify-content: space-between;
-  margin: rem 0;
 }
 </style>

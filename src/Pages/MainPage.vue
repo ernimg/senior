@@ -1,9 +1,9 @@
 <template>
-  <main>
+  <div>
     <about-us></about-us>
     <quick-summary></quick-summary>
     <the-create></the-create>
-  </main>
+  </div>
 </template>
 <script>
 import AboutUs from "@/Components/MainPage/AboutUs.vue";
