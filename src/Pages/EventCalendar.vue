@@ -16,17 +16,20 @@
         Nie przejmuj się pracujemy nad tym aby ta zakładka nie była pusta :D.
       </p>
     </div>
-    <event-item
-      v-else
-      v-for="event in EventsCalendar"
-      :key="event.id"
-      :id="event.id"
-      :e-title="event.eTitle"
-      :e-date="event.eDate"
-      :e-mail="event.eMail"
-      :e-phone="event.ePhone"
-      @rm-event="removeApp"
-    ></event-item>
+    <div class="timeline" v-else>
+      <ul>
+        <event-item
+          v-for="event in EventsCalendar"
+          :key="event.id"
+          :id="event.id"
+          :e-title="event.eTitle"
+          :e-date="event.eDate"
+          :e-mail="event.eMail"
+          :e-phone="event.ePhone"
+          @rm-event="removeApp"
+        ></event-item>
+      </ul>
+    </div>
   </section>
 </template>
 <script>
@@ -81,4 +84,65 @@ export default {
   },
 };
 </script>
-@/Store/callerndar@/Store/calerndar
+<style lang="scss">
+.timeline {
+  position: relative;
+  margin: 50px auto;
+  padding: 40px 0;
+  width: 1000px;
+  box-sizing: border-box;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: #c5c5c5;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+      position: relative;
+      width: 50%;
+      padding: 20px 40px;
+      box-sizing: border-box;
+
+      &:nth-child(odd) {
+        float: left;
+        text-align: right;
+        clear: both;
+      }
+      &:nth-child(even) {
+        float: right;
+        text-align: left;
+        clear: both;
+      }
+    }
+  }
+}
+.timeline ul li:nth-child(odd):before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 24px;
+  right: -6px;
+  background: rgba(233, 33, 99, 1);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.2);
+}
+.timeline ul li:nth-child(even):before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 24px;
+  left: -4px;
+  background: rgba(233, 33, 99, 1);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.2);
+}
+</style>

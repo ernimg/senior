@@ -1,15 +1,14 @@
 <template>
-  <base-container>
-    <li>
-      <header>
-        {{ eTitle }}
-      </header>
-      <div>
-        <span>{{ eDate }}</span>
-        <span>{{ eMail }}</span>
-        <span>{{ ePhone }}</span>
-      </div>
-    </li>
+  <li>
+    <header>
+      {{ eTitle }}
+    </header>
+    <div>
+      <span>{{ eDate }}</span>
+      <span>{{ eMail }}</span>
+      <span>{{ ePhone }}</span>
+    </div>
+
     <button v-if="isAuth" @click="removeEvent(id)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +25,7 @@
         />
       </svg>
     </button>
-  </base-container>
+  </li>
 </template>
 <script>
 import { computed } from "vue";
