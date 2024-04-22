@@ -1,14 +1,18 @@
 <template>
   <li>
-    <header>
-      {{ eTitle }}
-    </header>
-    <div>
-      <span>{{ eDate }}</span>
-      <span>{{ eMail }}</span>
-      <span>{{ ePhone }}</span>
+    <div class="content">
+      <h3>{{ eTitle }}</h3>
+      <p>
+        {{ eDescrition }}
+      </p>
+      <div>
+        <span>{{ eMail }}</span
+        ><span>{{ ePhone }}</span>
+      </div>
     </div>
-
+    <div class="time">
+      <h4>{{ eDate }}</h4>
+    </div>
     <button v-if="isAuth" @click="removeEvent(id)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +35,7 @@
 import { computed } from "vue";
 import { userAuthStore } from "@/Store/auth";
 export default {
-  props: ["id", "eTitle", "eDate", "eMail", "ePhone"],
+  props: ["id", "eTitle", "eDate", "eMail", "ePhone", "eDescrition"],
   setup(_, contex) {
     const authStore = userAuthStore();
     const isAuth = computed(() => {
@@ -45,20 +49,19 @@ export default {
 };
 </script>
 <style scoped>
-li header {
-  text-align: center;
+h3 {
+  padding: 0;
+  margin: 0;
+  color: #6f916f;
+  font-weight: 600;
 }
-li div {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+p {
+  margin: 1rem 0 0;
+  padding: 0;
 }
-span {
-  margin: 1rem;
-}
-button {
-  width: 1.6rem;
-  height: 1.6rem;
-  margin: 1rem;
+h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.4rem;
 }
 </style>

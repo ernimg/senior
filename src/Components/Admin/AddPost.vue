@@ -261,6 +261,7 @@ export default {
           phone: phone.value,
           date: date.value,
           email: email.value,
+          description: description.value,
         };
 
         calendarS.cerateEvent(message);

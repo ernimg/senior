@@ -17,7 +17,7 @@
       </p>
     </div>
     <div class="timeline" v-else>
-      <ul>
+      <ul class="clearfix">
         <event-item
           v-for="event in EventsCalendar"
           :key="event.id"
@@ -26,6 +26,7 @@
           :e-date="event.eDate"
           :e-mail="event.eMail"
           :e-phone="event.ePhone"
+          :e-descrition="event.eDescrition"
           @rm-event="removeApp"
         ></event-item>
       </ul>
@@ -85,17 +86,22 @@ export default {
 };
 </script>
 <style lang="scss">
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 .timeline {
   position: relative;
-  margin: 50px auto;
-  padding: 40px 0;
-  width: 1000px;
+  margin: 5rem auto;
+  padding: 4rem 0;
+  width: 100rem;
   box-sizing: border-box;
   &::before {
     content: "";
     position: absolute;
     left: 50%;
-    width: 2px;
+    width: 0.2rem;
     height: 100%;
     background: #c5c5c5;
   }
@@ -107,8 +113,7 @@ export default {
       list-style: none;
       position: relative;
       width: 50%;
-      padding: 20px 40px;
-      box-sizing: border-box;
+      padding: 2rem 4rem;
 
       &:nth-child(odd) {
         float: left;
@@ -126,23 +131,81 @@ export default {
 .timeline ul li:nth-child(odd):before {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
-  top: 24px;
+  width: 1rem;
+  height: 1rem;
+  top: 2.4rem;
   right: -6px;
-  background: rgba(233, 33, 99, 1);
+  background: #6f916f;
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.2);
+  box-shadow: 0 0 0 3px #86ad86;
 }
 .timeline ul li:nth-child(even):before {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
-  top: 24px;
-  left: -4px;
-  background: rgba(233, 33, 99, 1);
+  width: 1rem;
+  height: 1rem;
+  top: 2.4rem;
+  left: -0.4rem;
+  background: #6f916f;
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.2);
+  box-shadow: 0 0 0 3px #86ad86;
+}
+
+.timeline ul li:nth-child(odd) .time {
+  position: absolute;
+  top: 12px;
+  right: -165px;
+  margin: 0;
+  padding: 8px 16px;
+  background: #6f916f;
+  color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 0 0 3px #86ad86;
+}
+
+.timeline ul li:nth-child(even) .time {
+  position: absolute;
+  top: 12px;
+  left: -165px;
+  margin: 0;
+  padding: 8px 16px;
+  background: #6f916f;
+  color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 0 0 3px #86ad86;
+}
+@media (max-width: 1000px) {
+  .timeline {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .timeline {
+    width: 100%;
+    padding-bottom: 0;
+  }
+  .timeline:before {
+    left: 2rem;
+    height: 100%;
+  }
+  .timeline ul li:nth-child(odd),
+  .timeline ul li:nth-child(even) {
+    width: 100%;
+    text-align: left;
+    padding-left: 50px;
+    padding-bottom: 50px;
+  }
+  .timeline ul li:nth-child(odd):before,
+  .timeline ul li:nth-child(even):before {
+    top: -18px;
+    left: 16px;
+  }
+  .timeline ul li:nth-child(odd) .time,
+  .timeline ul li:nth-child(even) .time {
+    top: -30px;
+    left: 50px;
+    right: inherit;
+  }
 }
 </style>

@@ -41,6 +41,7 @@ export const calendarStore = defineStore("calendar", {
         ePhone: payload.phone,
         eDate: payload.date,
         eMail: payload.email,
+        eDescrition: payload.description,
       };
       event.id = "id" + Math.random().toString(15).slice(2);
       const token = authStore.getToken;
@@ -78,6 +79,7 @@ export const calendarStore = defineStore("calendar", {
           eDate: responseData[key].eDate,
           eMail: responseData[key].eMail,
           ePhone: responseData[key].ePhone,
+          eDescrition: responseData[key].eDescrition,
         };
         events.push(event);
       }
