@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="event">
     <div class="content">
       <h3>{{ eTitle }}</h3>
       <p>
@@ -49,10 +49,13 @@ export default {
 };
 </script>
 <style scoped>
+.event {
+}
 h3 {
   padding: 0;
   margin: 0;
   color: #6f916f;
+  font-size: 2.4rem;
   font-weight: 600;
 }
 p {
