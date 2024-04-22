@@ -58,6 +58,11 @@ h3 {
 p {
   margin: 1rem 0 0;
   padding: 0;
+  font-size: 1.4rem;
+  color: #555;
+  letter-spacing: 0.1rem;
+  line-height: 200%;
+  padding: 0.4rem 0.8rem;
 }
 h4 {
   margin: 0;
