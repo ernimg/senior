@@ -65,11 +65,11 @@ onMounted(loadNews);
 </script>
 <style lang="scss">
 .news__list {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-around;
-  margin: 6.4rem 0;
-  padding-left: 0;
+  display: grid;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
 }
 </style>

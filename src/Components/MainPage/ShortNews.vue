@@ -28,7 +28,7 @@ const sortedNews = computed(() => {
     .sort((a, b) => {
       return new Date(b.publishDate) - new Date(a.publishDate);
     })
-    .slice(0, 4);
+    .slice(0, 3);
 });
 const { isLoading, loadNews } = useNewsLoader();
 onMounted(loadNews);

@@ -1,24 +1,24 @@
 <template>
-  <div class="card">
-    <div class="news__header">
-      <img
-        class="news__header-img"
-        :src="img"
-        alt="zdjęcie z nagłówka wydarzeń"
-      />
-      <h3 class="news__header-title">{{ title }}</h3>
+  <article>
+    <div class="article-wrapper">
+      <figure>
+        <img :src="img" alt="" />
+      </figure>
+      <div class="article-body">
+        <h3>{{ title }}</h3>
+        <p>
+          {{ description }}
+        </p>
+      </div>
     </div>
-    <p class="description">
-      {{ description }}
-    </p>
+    <div class="bar"></div>
     <base-button link mode="basicBtn" :to="newsIdUrl" class="showMore"
       >Zobacz więcej</base-button
     >
     <button class="rm_btn" v-if="isAuth" @click="removeNews(id)">
       <font-awesome-icon icon="fa-solid fa-trash" />
     </button>
-    <span class="date"> Data publikacji {{ publishDate }}</span>
-  </div>
+  </article>
 </template>
 <script>
 import { computed } from "vue";
@@ -44,106 +44,116 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.card {
+article {
+  --img-scale: 1.001;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
   position: relative;
-  flex-basis: 90%;
-  max-height: 60rem;
-  text-align: center;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-  margin-bottom: 4.8rem;
-  &:hover {
-    transform: scale(1.02);
-    z-index: 1;
-  }
-  @media screen and (min-width: 640px) {
-    flex-basis: 48%;
-  }
-  @media screen and (min-width: 1024px) {
-    flex-basis: 31%;
-  }
-  @media screen and (min-width: 1200px) {
-    flex-basis: 23%;
-  }
-}
-.news__header {
-  width: 100%;
-  &-img {
-    height: 25rem;
-    width: 100%;
-    border-bottom: 1px solid #6f916f;
-  }
-  &-title {
-    position: relative;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 8rem;
-    padding: 1.8rem 0.4rem;
-    font-size: 2rem;
-    letter-spacing: 0.2rem;
-    color: #222;
+  box-shadow: none;
+  background: #fff;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  border: solid 0.2rem #f7f7f7;
 
-    overflow: hidden;
-    &:after {
-      content: "";
+  a {
+    &::after {
       position: absolute;
-      bottom: -1rem;
-      left: 0;
-      width: 100%;
-      height: 3rem;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 1) 100%
-      );
+      inset-block: 0;
+      inset-inline: 0;
+      cursor: pointer;
+      content: "";
     }
   }
 }
-.description {
-  font-size: 1.2rem;
-  padding: 0.8rem 0.4rem;
-  height: 23rem;
-  text-align: left;
-  line-height: 200%;
-  letter-spacing: 0.1rem;
-  color: #555;
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
-.date {
-  position: absolute;
-  top: -3.7rem;
-  right: 0;
-  background-color: #6f916f;
-  color: #fff;
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 0.8rem 0.4rem;
+
+article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.article-body {
+  padding: 2.4rem;
+  h3 {
+    margin: 0 0 18px 0;
+    font-size: 1.9rem;
+    letter-spacing: 0.06em;
+    color: var(--title-color);
+    transition: color 0.3s ease-out;
+    text-align: center;
+  }
+  p {
+    height: 26rem;
+    overflow: hidden;
+    font-size: 1.2rem;
+    color: #555;
+    letter-spacing: 0.1rem;
+    text-align: justify;
+    line-height: 150%;
+  }
+}
+
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.bar {
+  height: 3.2rem;
 }
 .showMore {
-  position: relative;
-  bottom: 0;
-  border: unset;
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
-}
-.rm_btn {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4.5rem;
-  font-size: 1.6rem;
-  text-align: center;
-  background: rgba(30, 30, 30, 0.6);
-  color: #ccc;
-  border: unset;
-  transition: 0.3s;
-  &:hover {
-    color: #fff;
-    background: crimson;
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translatex(-50%);
+}
+@media screen and (max-width: 660px) {
+  article {
+    container: card/inline-size;
   }
+}
+
+@container card (min-width: 380px) {
+  .article-wrapper {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+  }
+  .article-body {
+    padding-left: 0;
+  }
+  figure {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  figure img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 </style>
