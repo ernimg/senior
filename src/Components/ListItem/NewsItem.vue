@@ -1,5 +1,6 @@
 <template>
   <article>
+    <span class="publis-date">{{ publishDate }}</span>
     <div class="article-wrapper">
       <figure>
         <img :src="img" alt="" />
@@ -120,6 +121,16 @@ article:has(:hover, :focus) {
   left: 50%;
   transform: translatex(-50%);
 }
+.publis-date {
+  position: absolute;
+  top: 0;
+  background: #6f916f;
+  padding: 0.8rem 0.4rem;
+  box-shadow: 0 0 0 3px #86ad86;
+  color: #fff;
+  font-size: 1.4rem;
+  z-index: 2;
+}
 @media screen and (max-width: 660px) {
   article {
     container: card/inline-size;
@@ -144,6 +155,11 @@ article:has(:hover, :focus) {
     height: 100%;
     aspect-ratio: 1;
     object-fit: cover;
+  }
+  .article-body {
+    h3 {
+      margin: 24px 0 18px 0;
+    }
   }
 }
 
